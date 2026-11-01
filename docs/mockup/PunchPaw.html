@@ -1,0 +1,612 @@
+<title>PunchPaw Mockup</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,700;1,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one fixed-size stage (1200 x 640) scaled as a piece. Wood cheeks left and right; between them the header, a top plate (level meter, gain reduction lamps, auto timing, knee, threshold lamps), three displays, six knobs (three classic, three ours) and the preview rig. In/out meters run down the far right. */
+:root{
+  --bg:#0b0b0d; --plate:#16171a; --plate2:#1e2024; --line:#33363d; --ink:#f4f5f7; --dim:#a9adb8;
+  --title:#e8e9ee; --accent:#02EBBA; --disp:#06080a; --grid:#1b2523;
+  --g:#02EBBA; --y:#FFD100; --o:#F57F01; --r:#FF1383; --b:#6CC9F5; --p:#A43DFF;
+  --sel:#241238; --selb:#CD92FE; --pink:#FF7BB1;
+  --font-ui:'Barlow Condensed','Arial Narrow',Arial,sans-serif;
+  --font-num:'JetBrains Mono','SFMono-Regular',Consolas,monospace;
+  color-scheme:dark;
+}
+#app[data-look="A"]{--bg:#161638;--plate:#1c1c4a;--plate2:#2C2C62;--line:#33403f;--ink:#e8e6e1;--dim:#9a9690;--title:#E1CBF4;--accent:#FFA600;--disp:#05060d;--y:#FFA600}
+#app[data-look="B"]{--bg:#0b0b0d;--plate:#15161a;--plate2:#1c1d22;--line:#2b2d34;--ink:#f4f5f7;--dim:#a9adb8;--title:#E1CBF4;--accent:#A43DFF;--disp:#06080a}
+html,body{background:var(--bg);margin:0}
+#stage,#stage *{box-sizing:border-box}
+body{color:var(--ink);font-family:var(--font-ui);padding-block:12px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:hidden}
+#app{background:var(--bg);display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0}
+#frame{position:relative;flex:none}
+#stage{position:absolute;left:0;top:0;width:1200px;height:640px;transform-origin:0 0;display:flex;background:#000;user-select:none;-webkit-user-select:none}
+.cheek{width:52px;flex:none;position:relative;cursor:default}
+.cheek canvas{width:100%;height:100%;display:block}
+.main{flex:1;min-width:0;display:flex;flex-direction:column;background:var(--plate);position:relative}
+.hdr{height:46px;flex:none;display:flex;align-items:center;gap:10px;padding:0 12px;border-bottom:1px solid var(--line);background:var(--plate2)}
+.brand{display:flex;align-items:center;gap:8px}
+.brand .name{font-style:italic;font-weight:800;font-size:26px;letter-spacing:.5px;color:#fff;line-height:1}
+.brand .s87{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--dim)}
+.sp{flex:1}
+button,select,input{font-family:var(--font-ui)}
+.btn{background:var(--plate);color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:3px 10px;font-size:14px;letter-spacing:.5px;cursor:pointer;line-height:1.2}
+.btn:hover{border-color:var(--dim)}
+.btn:focus-visible,.knob:focus-visible,.led-hit:focus-visible,.chip:focus-visible,.rh:focus-visible{outline:2px solid var(--selb);outline-offset:2px}
+.btn.on{background:var(--sel);border-color:var(--selb);color:#E1CBF4}
+.presetbar{display:flex;align-items:center;gap:4px}
+.presetbar .pname{min-width:200px;text-align:center;font-size:16px;font-weight:600}
+.body{flex:1;display:grid;grid-template-columns:1fr 92px;min-height:0;overflow:hidden}
+.left{display:flex;flex-direction:column;min-width:0}
+.top{height:152px;flex:none;position:relative;border-bottom:1px solid var(--line)}
+.disp{height:128px;flex:none;display:flex;gap:8px;padding:8px 10px;border-bottom:1px solid var(--line);background:var(--plate2)}
+.dcell{display:flex;flex-direction:column;gap:2px;min-width:0}
+.dcell .cap{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--title)}
+.dcell canvas{background:var(--disp);border:1px solid var(--line);border-radius:3px;display:block}
+.knobs{height:190px;flex:none;display:flex;align-items:flex-start;justify-content:space-around;padding:6px 8px 0;position:relative}
+.kcell{display:flex;flex-direction:column;align-items:center;width:170px}
+.kcell .lab{font-size:15px;letter-spacing:3px;color:var(--title);font-weight:700;height:18px;text-transform:uppercase}
+.knob{width:150px;height:150px;cursor:ns-resize;touch-action:none;border-radius:50%}
+.kval{font-family:var(--font-num);font-size:12px;color:var(--dim);margin-top:-6px;height:16px;white-space:nowrap}
+.kval b{color:var(--ink);font-weight:600}
+.rig{height:96px;flex:none;border-top:1px solid var(--line);background:var(--plate2);display:flex;align-items:center;gap:10px;padding:0 12px;position:relative}
+.rig .tag{position:absolute;right:10px;top:6px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);border:1px dashed var(--line);padding:1px 6px;border-radius:3px}
+.rig select{background:var(--disp);color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:4px 6px;font-size:14px}
+.rig .hint{font-size:13px;color:var(--dim);max-width:380px;line-height:1.2}
+.meters{border-left:1px solid var(--line);background:var(--plate2);display:flex;flex-direction:column;align-items:center;padding:8px 0 6px;gap:2px}
+.meters .mrow{display:flex;gap:4px;align-items:flex-start}
+.meters .cap{font-size:12px;letter-spacing:1.5px;color:var(--title);text-transform:uppercase;display:flex;gap:26px;margin-right:21px}
+.meters .pk{font-family:var(--font-num);font-size:11px;color:var(--dim);display:flex;gap:6px;margin-top:2px}
+.foot{height:26px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 12px;font-size:12px;color:var(--dim);letter-spacing:1px;border-top:1px solid var(--line);background:var(--plate2)}
+/* top plate */
+.top .lbl{position:absolute;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--title);white-space:nowrap}
+.led{position:absolute;width:12px;height:12px;border-radius:50%;background:#26282c;box-shadow:inset 0 0 2px #000;transform:translate(-50%,-50%)}
+.led.on{box-shadow:0 0 8px 1px currentColor,inset 0 0 2px rgba(255,255,255,.6);background:currentColor}
+.lnum{position:absolute;transform:translate(-50%,-50%);font-family:var(--font-num);font-size:10px;color:var(--dim)}
+.led-hit{position:absolute;transform:translate(-50%,-50%);width:44px;height:30px;cursor:pointer;background:none;border:0;padding:0;border-radius:4px}
+.pbtn{position:absolute;width:50px;height:26px;border-radius:5px;border:1px solid #000;background:linear-gradient(#5a5d66,#3a3c43);box-shadow:0 2px 0 #000,inset 0 1px 0 rgba(255,255,255,.25);cursor:pointer;transform:translate(-50%,-50%);padding:0}
+.pbtn:active{transform:translate(-50%,-48%);box-shadow:0 0 0 #000,inset 0 1px 0 rgba(255,255,255,.15)}
+.bracket{position:absolute;border:1px solid var(--dim);border-radius:10px;pointer-events:none}
+.sect{position:absolute;font-size:14px;letter-spacing:2px;color:var(--title);font-weight:700;text-transform:uppercase}
+/* overlays */
+#modal{position:absolute;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;z-index:30}
+#modal[hidden]{display:none}
+.dlg{width:760px;max-height:560px;background:var(--plate);border:1px solid var(--selb);border-radius:8px;display:flex;flex-direction:column;box-shadow:0 10px 40px #000}
+.dlg h2{margin:0;padding:10px 16px;font-size:20px;letter-spacing:1px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;color:var(--title)}
+.dlg .dbody{padding:12px 16px;overflow:auto;font-size:15px;line-height:1.35;min-height:0}
+.dlg .dfoot{padding:10px 16px;border-top:1px solid var(--line);display:flex;gap:8px;justify-content:flex-end}
+.dlg label{display:flex;align-items:center;gap:8px;margin:6px 0}
+.dlg input[type=text],.dlg input:not([type]),.dlg select,.dlg textarea{background:var(--disp);color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:5px 8px;font-size:15px}
+.dlg textarea{width:100%;height:230px;font-family:var(--font-num);font-size:12px;box-sizing:border-box}
+.dlg kbd{font-family:var(--font-num);font-size:12px;border:1px solid var(--line);border-radius:3px;padding:0 5px;background:var(--disp)}
+.dlg table{border-collapse:collapse;width:100%}
+.dlg td{padding:3px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.pb{display:grid;grid-template-columns:300px 1fr;gap:14px;height:380px}
+.pb .list{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:4px;overflow:auto;background:var(--disp)}
+.pb .item{padding:5px 10px;cursor:pointer;display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid var(--line);font-size:15px}
+.pb .item.sel{background:var(--sel);color:#E1CBF4}
+.pb .item small{color:var(--dim);font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.chips{display:flex;gap:4px;flex-wrap:wrap;margin:6px 0}
+.chip{background:var(--disp);border:1px solid var(--line);color:var(--ink);border-radius:12px;padding:1px 9px;font-size:13px;cursor:pointer}
+.chip.on{background:var(--sel);border-color:var(--selb);color:#E1CBF4}
+.warn{color:var(--r)}
+#tip{position:absolute;max-width:300px;background:#000;border:1px solid var(--selb);color:var(--ink);padding:6px 9px;border-radius:5px;font-size:14px;line-height:1.25;z-index:50;pointer-events:none}
+#tip[hidden]{display:none}
+#toast{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);background:#000;border:1px solid var(--selb);padding:5px 14px;border-radius:5px;font-size:15px;z-index:60}
+#toast[hidden]{display:none}
+/* resize handles live on the unscaled frame */
+.rh{position:absolute;z-index:20;background:transparent}
+.rh.n{left:12px;right:12px;top:-4px;height:8px;cursor:ns-resize}.rh.s{left:12px;right:12px;bottom:-4px;height:8px;cursor:ns-resize}
+.rh.e{top:12px;bottom:12px;right:-4px;width:8px;cursor:ew-resize}.rh.w{top:12px;bottom:12px;left:-4px;width:8px;cursor:ew-resize}
+.rh.ne{right:-5px;top:-5px;width:14px;height:14px;cursor:nesw-resize}.rh.sw{left:-5px;bottom:-5px;width:14px;height:14px;cursor:nesw-resize}
+.rh.nw{left:-5px;top:-5px;width:14px;height:14px;cursor:nwse-resize}.rh.se{right:-5px;bottom:-5px;width:14px;height:14px;cursor:nwse-resize}
+.zoomrow{display:flex;gap:6px;align-items:center;font-size:13px;color:var(--dim);flex-wrap:wrap;justify-content:center}
+.zoomrow .btn{padding:1px 8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* PunchPaw additions */
+.brand .name{display:flex;align-items:baseline}
+.brand .name i{color:var(--accent);font-style:italic;margin-left:1px}
+.top .ltxt{position:absolute;transform:translate(0,-50%);font-size:13px;letter-spacing:.5px;color:var(--ink);white-space:nowrap}
+.top .note{position:absolute;font-size:11px;letter-spacing:.5px;color:var(--dim);white-space:nowrap}
+.top .rdt{position:absolute;font-family:var(--font-num);font-size:12px;color:var(--dim);white-space:nowrap}
+.top .rdt b{color:var(--ink);font-weight:600}
+.top .vline{position:absolute;width:1px;background:var(--line)}
+.dcell .cap{white-space:nowrap}
+.dcell .cap .k-in{color:var(--dim)}.dcell .cap .k-out{color:var(--accent)}.dcell .cap .k-gr{color:var(--pink)}
+.disp{height:134px}
+.rig{height:90px}
+.vdiv{align-self:flex-start;margin-top:10px;height:150px;width:16px;border-left:1px solid var(--line);padding-left:3px;writing-mode:vertical-rl;transform:rotate(180deg);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);white-space:nowrap;display:flex;align-items:center;justify-content:center}
+.kcell{width:158px}
+.kcell .lab{white-space:nowrap}
+.meters .pk{white-space:nowrap}
+.aboutbtns{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.aboutbtns a{text-decoration:none;display:inline-block}
+.knob:hover .rot circle:first-child{filter:brightness(1.08)}
+
+/* v1.1 */
+.sub{height:22px;flex:none;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid var(--line);background:var(--plate);white-space:nowrap;overflow:hidden}
+.sub .stxt{font-size:14px;color:var(--ink);letter-spacing:.3px;margin-right:6px}
+.sub .bf{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim)}
+.sub .tg{font-size:12px;letter-spacing:.5px;border:1px solid var(--accent);color:var(--title);border-radius:9px;padding:0 8px;line-height:16px}
+.sub .tg.no{border-color:var(--pink);color:var(--pink);margin-left:6px}
+.rig{height:68px}
+.top .tmk{position:absolute;display:flex;flex-direction:column;align-items:center;width:110px}
+.top .tmk .lab{font-size:13px;letter-spacing:2px;color:var(--title);font-weight:700;height:16px;text-transform:uppercase}
+.top .tmk .knob{width:60px;height:60px}
+.top .tmk .knob svg{width:60px;height:60px;display:block}
+.top .tmk .kval{margin-top:-2px;font-size:12px}
+.top .tmk .kend{position:absolute;top:61px;font-family:var(--font-num);font-size:9px;color:var(--dim);white-space:nowrap}
+.top .tmk .kend.e0{left:2px}.top .tmk .kend.e1{right:2px}
+.gcols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.gh{margin:0 0 4px;font-size:18px;color:var(--title);letter-spacing:1px}
+.gl{margin:0;padding-left:18px}.gl li{margin-bottom:6px}
+.gcols{font-size:14px;line-height:1.3}.dlg:has(.gcols){max-height:600px}
+</style>
+
+<div id="app" data-look="C">
+  <div id="frame">
+    <div id="stage">
+      <div class="cheek" id="cheekL" data-tip="Double-click the wood to reset the window to 100%."><canvas></canvas></div>
+      <div class="main">
+        <header class="hdr">
+          <div class="brand">
+            <svg width="34" height="34" viewBox="0 0 64 64" aria-label="Cat head logo"><path d="M8 6 L24 22 H40 L56 6 L60 36 Q60 58 32 60 Q4 58 4 36 Z" fill="#FF7BB1"/><path d="M12 14 L21 23 H14 Z M52 14 L43 23 H50 Z" fill="#FBBDD0"/><ellipse cx="22" cy="36" rx="4" ry="5" fill="#16171a"/><ellipse cx="42" cy="36" rx="4" ry="5" fill="#16171a"/><path d="M29 44 H35 L32 48 Z" fill="#16171a"/><path d="M32 48 Q28 53 24 50 M32 48 Q36 53 40 50" stroke="#16171a" stroke-width="2" fill="none"/><path d="M2 40 H14 M2 46 H14 M62 40 H50 M62 46 H50" stroke="#FBBDD0" stroke-width="1.6"/></svg>
+            <span class="name">Punch<i>Paw</i></span><span class="s87">Studio 87</span>
+          </div>
+          <div class="sp"></div>
+          <div class="presetbar">
+            <button class="btn" id="pPrev" data-tip="Previous preset.">&#9664;</button>
+            <button class="btn pname" id="pName" data-tip="Open the preset browser. Double-click to rename your own presets.">Start Here</button>
+            <button class="btn" id="pNext" data-tip="Next preset.">&#9654;</button>
+            <button class="btn" id="pSave" data-tip="Save these settings as your own preset. Asks before overwriting.">Save</button>
+          </div>
+          <div class="sp"></div>
+          <button class="btn" id="bBypass" aria-pressed="false" data-tip="Bypass: hear the dry signal to compare with the processed sound (B). The meters keep moving.">Bypass</button>
+          <button class="btn" id="bGuide" data-tip="Short guide and keyboard shortcuts.">Guide</button>
+          <button class="btn" id="bSettings" data-tip="Info bubbles, power saving, colour look.">Settings</button>
+          <button class="btn" id="bAbout" data-tip="About PunchPaw, support and where your files live.">About &amp; Support</button>
+        </header>
+        <div class="sub" id="sub" data-tip="PunchPaw is a punch compressor for drums and bass: kick, snare, drum bus and parallel crush. It is not a mastering tool. It is fast, hard-knee and adds colour, so for a whole song use a gentle bus or mastering compressor instead."><span class="stxt">Punchy hard-knee compressor with true RMS detection.</span><span class="bf">Best for</span><span class="tg">Drums</span><span class="tg">Bass</span><span class="tg">Drum bus</span><span class="tg">Parallel crush</span><span class="tg no">Not for mastering</span></div>
+        <div class="body">
+          <div class="left">
+            <section class="top" id="top"></section>
+            <section class="disp">
+              <div class="dcell"><div class="cap">Transfer curve</div><canvas id="cvCurve" data-tip="Level in (across) against level out (up), both in dB. The curve follows Threshold, Ratio, Knee, Output and Ceiling. The white dot is the live signal."></canvas></div>
+              <div class="dcell"><div class="cap">Punch shape, last 1.2 s: <span class="k-in">in</span> <span class="k-out">out</span> <span class="k-gr">gain reduction</span></div><canvas id="cvShape" data-tip="The loudness shape of each hit in dB. Grey is what goes in, the coloured fill is what comes out, pink bars from the top show how much was turned down. Watch the front of the kick to see the punch."></canvas></div>
+              <div class="dcell"><div class="cap">Gain reduction, last 6 s</div><canvas id="cvHist" data-tip="How much the unit turned the signal down, in dB, over the last six seconds."></canvas></div>
+            </section>
+            <section class="knobs" id="knobs"></section>
+            <section class="rig">
+              <button class="btn" id="rigPlay" data-tip="Start or stop the preview sound (Space).">&#9654; Play preview</button>
+              <select id="rigSrc" aria-label="Preview source" data-tip="Test sound for the preview. The meters and displays move even when it is not playing.">
+                <option value="kick">Kick loop</option><option value="drums">Drum loop</option><option value="snare">Snare loop</option><option value="mix">Drums and bass loop</option><option value="file">Your file</option>
+              </select>
+              <button class="btn" id="rigFile" data-tip="Load your own audio file for the preview. Nothing is uploaded.">Load file</button>
+              <input type="file" id="rigFileIn" accept="audio/*" hidden>
+              <div class="hint" id="rigHint">Bypass (B) switches between processed and dry so you can compare.</div>
+              <div class="tag">Preview rig, not part of the plugin</div>
+            </section>
+          </div>
+          <aside class="meters">
+            <div class="cap"><span>In</span><span>Out</span></div>
+            <div class="mrow"><canvas id="cvIn" data-tip="Input peak level in dB. Blue is safe, purple is the warning zone, pink is clipping. The top cap stays pink after a clip; click to clear it."></canvas><canvas id="cvOut" data-tip="Output peak level in dB, after Output, Mix and Ceiling. The top cap stays pink after a clip; click to clear it."></canvas></div>
+            <div class="pk"><span id="pkIn" data-tip="Highest recent input peak, in dB.">-inf</span><span id="pkOut" data-tip="Highest recent output peak, in dB.">-inf</span></div>
+          </aside>
+        </div>
+        <footer class="foot"><span>Studio 87 &middot; PunchPaw v1.1 design mockup</span><span id="winsz">1200 &times; 640</span></footer>
+      </div>
+      <div class="cheek" id="cheekR" data-tip="Double-click the wood to reset the window to 100%."><canvas></canvas></div>
+      <div id="modal" hidden></div>
+      <div id="tip" hidden></div>
+      <div id="toast" hidden></div>
+    </div>
+    <div class="rh n" data-h="n"></div><div class="rh s" data-h="s"></div><div class="rh e" data-h="e"></div><div class="rh w" data-h="w"></div>
+    <div class="rh ne" data-h="ne"></div><div class="rh nw" data-h="nw"></div><div class="rh se" data-h="se"></div><div class="rh sw" data-h="sw"></div>
+  </div>
+  <div class="zoomrow"><button class="btn" id="zMinus" aria-label="Smaller">&minus;</button><button class="btn" id="zPct">100%</button><button class="btn" id="zPlus" aria-label="Larger">+</button><span>Drag any edge or corner to resize. Double-click the wood to reset.</span></div>
+</div>
+
+<script>
+(function(){
+'use strict';
+/* ============ Helpers ============ */
+const D2L=db=>Math.pow(10,db*0.05), L2D=x=>20*Math.log10(Math.max(x,1e-9));
+function clamp(v,a,b){return Math.min(b,Math.max(a,v))}
+/* ============ Control maps (knob position 0..10 to real value) ============ */
+const RS=[1,0.6667,0.5,0.3333,0.25,0.1667,0.1,0.05,0];            /* slope 1/ratio at knob 0..8; past 8 the ratio goes negative */
+const slopeOf=v=>v<=8?(()=>{const i=Math.min(7,Math.floor(v)),f=v-i;return RS[i]+(RS[i+1]-RS[i])*f})():-(v-8)/2;
+function ratioText(v){const s=slopeOf(v);if(Math.abs(s)<0.004)return '&infin;:1';const r=1/s,a=Math.abs(r);return (r<0?'-':'')+(a>=10?a.toFixed(0):a.toFixed(1))+':1'}
+const thrDb=v=>-40+4*v, outDb=v=>(v-5)*4;
+/* Manual timing (our addition): Attack 0.1 to 100 ms, Release 10 ms to 2 s, both on a log scale across the knob */
+const atkMsOf=v=>0.1*Math.pow(1000,v/10), relMsOf=v=>10*Math.pow(200,v/10);
+const atkKnob=ms=>10*Math.log(ms/0.1)/Math.log(1000), relKnob=ms=>10*Math.log(ms/10)/Math.log(200);
+function fmtMs(ms){if(ms>=1000)return (ms/1000).toFixed(2)+' s';if(ms>=100)return Math.round(ms)+' ms';if(ms>=10)return ms.toFixed(1)+' ms';if(ms>=1)return ms.toFixed(2)+' ms';return ms.toFixed(2)+' ms'}
+const HPF=[20,20,30,40,60,80,100,130,170,220,300];
+function hpHz(v){if(v<0.5)return 0;if(v<1)return 20;const i=Math.min(9,Math.floor(v)),f=v-i;return Math.exp(Math.log(HPF[i])+(Math.log(HPF[i+1])-Math.log(HPF[i]))*f)}
+const CD=[-12,-10,-9,-8,-7,-6,-5,-4,-3,-1,0];
+function ceilDb(v){if(v>=9.95)return null;const i=Math.min(9,Math.floor(v)),f=v-i;return CD[i]+(CD[i+1]-CD[i])*f}
+/* ============ DSP: gain computer, timing, engine (mockup version of the planned C++ core) ============ */
+/* Hard knee as in the classic unit; the soft knee (8 dB wide) is our addition. */
+function grOf(over,s,knee){const k=1-s;if(knee){const w=8;if(2*over<-w)return 0;if(2*Math.abs(over)<=w){const u=over+w/2;return k*u*u/(2*w)}}return over>0?over*k:0}
+/* Program dependent timing from the public spec: attack ~15 ms at 10 dB, 5 ms at 20 dB, 3 ms at 30 dB; release 125 dB per second. */
+function attackMs(g){if(g<=10)return 15;if(g<=20)return 15-(g-10);if(g<=30)return 5-(g-20)*.2;return 3}
+const REL_DBPS=125;
+function clipTo(x,c){const a=.6*c,ax=Math.abs(x);if(ax<=a)return x;return (x<0?-1:1)*(a+(c-a)*Math.tanh((ax-a)/(c-a)))}
+const SCN=400;
+class Engine{
+ constructor(){this.fs=48000;this.p={thr:-20,s:.25,outDb:0,hp:0,mix:1,ceil:0,knee:0,bypass:false,timing:0,atkMs:10,relMs:150};this.aK=.01;this.rK=.001;
+  this.ms=0;this.cur=0;this.hx=[0,0];this.hy=[0,0];this.curOut=1;this.inPk=0;this.outPk=0;this.vuI=0;this.vuO=0;this.grNow=0;this.grPk=0;this.lvl=-90;this.atk=15;this.over=-99;
+  this.scIn=new Float32Array(SCN);this.scOut=new Float32Array(SCN);this.scGr=new Float32Array(SCN);this.scI=0;this.aI=0;this.aO=0;this.aG=0;this.aN=0;this.prepare(48000)}
+ prepare(fs){this.fs=fs;this.kr=1-Math.exp(-1/(0.008*fs));this.kvu=1-Math.exp(-1/(0.065*fs));this.colN=Math.round(fs*0.003);this.ksm=1-Math.exp(-1/(0.010*fs));this.setP({});this.curOut=this.tOut}
+ setP(np){Object.assign(this.p,np);const p=this.p;this.aK=1-Math.exp(-1/(Math.max(.05,p.atkMs)/2.2*0.001*this.fs));this.rK=1-Math.exp(-1/(Math.max(1,p.relMs)/2.2*0.001*this.fs));this.tOut=D2L(p.outDb);this.hpA=p.hp>0?Math.exp(-2*Math.PI*p.hp/this.fs):0}
+ process(L,R,n){const p=this.p,ch=[L,R];let ip=0,op=0,gm=0;
+  for(let i=0;i<n;i++){this.curOut+=(this.tOut-this.curOut)*this.ksm;
+   const dl=L[i],dr=R[i];ip=Math.max(ip,Math.abs(dl),Math.abs(dr));
+   let sl=dl,sr=dr;if(this.hpA>0){const a=this.hpA;let y=a*(this.hy[0]+dl-this.hx[0]);this.hx[0]=dl;this.hy[0]=y;sl=y;y=a*(this.hy[1]+dr-this.hx[1]);this.hx[1]=dr;this.hy[1]=y;sr=y}
+   this.ms+=((sl*sl+sr*sr)*.5-this.ms)*this.kr;const lvl=10*Math.log10(this.ms+1e-12);this.lvl=lvl;this.over=lvl-p.thr;
+   const tgt=Math.min(60,grOf(this.over,p.s,p.knee));
+   if(tgt>this.cur){if(p.timing){this.atk=p.atkMs;this.cur+=(tgt-this.cur)*this.aK}else{const am=attackMs(tgt);this.atk=am;this.cur+=(tgt-this.cur)*(1-Math.exp(-1/(am/2.2*0.001*this.fs)))}}else if(p.timing)this.cur=Math.max(tgt,this.cur-(this.cur-tgt)*this.rK);else this.cur=Math.max(tgt,this.cur-REL_DBPS/this.fs);
+   gm=Math.max(gm,this.cur);const g=D2L(-this.cur)*this.curOut;
+   const o=[0,0],dry=[dl,dr];
+   for(let c=0;c<2;c++){let w=dry[c]*g,y=p.mix>=1?w:(p.mix<=0?dry[c]:dry[c]*(1-p.mix)+w*p.mix);if(p.ceil>0)y=clipTo(y,p.ceil);if(!isFinite(y)){this.ms=0;this.cur=0;y=0}if(p.bypass)y=dry[c];o[c]=y;ch[c][i]=y;op=Math.max(op,Math.abs(y))}
+   this.vuI+=((dl*dl+dr*dr)*.5-this.vuI)*this.kvu;this.vuO+=((o[0]*o[0]+o[1]*o[1])*.5-this.vuO)*this.kvu;
+   this.aI=Math.max(this.aI,Math.abs(dl),Math.abs(dr));this.aO=Math.max(this.aO,Math.abs(o[0]),Math.abs(o[1]));this.aG=Math.max(this.aG,this.cur);
+   if(++this.aN>=this.colN){this.scIn[this.scI]=this.aI;this.scOut[this.scI]=this.aO;this.scGr[this.scI]=this.aG;this.scI=(this.scI+1)%SCN;this.aI=this.aO=this.aG=0;this.aN=0}}
+  this.grPk=gm;this.grNow=this.cur;const d=Math.pow(.9,n/512);this.inPk=Math.max(ip,this.inPk*d);this.outPk=Math.max(op,this.outPk*d)}}
+/* ============ Preview sources (synthesised, deterministic) ============ */
+const BPM=150,STEP=60/BPM/4;
+const K32=[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0, 1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,1];
+const SN16=[0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], SG16=[0,0,0,0,1,0,0,.35,0,0,.5,0,1,0,.3,0];
+const HH16=[0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1], BS16=[0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0];
+const nz=i=>((Math.imul(i|0,1664525)+1013904223)>>>0)/2147483648-1;
+function tauOf(pat,t){const n=pat.length,s=t/STEP,si=Math.floor(s),fr=s-si;for(let k=0;k<n;k++){const a=pat[(((si-k)%n)+n)%n];if(a)return [(k+fr)*STEP,a]}return [99,0]}
+function kick(tk,i){if(tk>.7)return 0;const ph=2*Math.PI*(46*tk+154*(1-Math.exp(-45*tk))/45),env=Math.exp(-tk*6.5)*(1-Math.exp(-tk*1500));
+ return (Math.tanh(1.7*Math.sin(ph))/Math.tanh(1.7)*env+(tk<.003?nz(i)*(1-tk/.003)*.35:0))*.95}
+let fileBuf=null;
+function srcSample(kind,i,fs){const t=i/fs;let v=0;
+ if(kind==='file'&&fileBuf){return fileBuf[i%fileBuf.length]}
+ if(kind==='kick'||kind==='drums'||kind==='mix'){const [tk]=tauOf(K32,t);v+=kick(tk,i)}
+ if(kind==='drums'||kind==='mix'){const [ts]=tauOf(SN16,t),[th,ha]=tauOf(HH16,t);
+  if(ts<.3)v+=(nz(i*3)*Math.exp(-ts*18)*.5+Math.sin(2*Math.PI*190*ts)*Math.exp(-ts*25)*.5)*.55;
+  if(th<.1)v+=(nz(i)-nz(i-1))*Math.exp(-th*60)*.2*ha}
+ if(kind==='snare'){const [ts,a]=tauOf(SG16,t),[th,ha]=tauOf(HH16,t);
+  if(ts<.3)v+=(nz(i*3)*Math.exp(-ts*18)*.6+Math.sin(2*Math.PI*190*ts)*Math.exp(-ts*25)*.55)*a*.95;
+  if(th<.1)v+=(nz(i)-nz(i-1))*Math.exp(-th*60)*.12*ha}
+ if(kind==='mix'){const [tb,ba]=tauOf(BS16,t);if(tb<.16)v+=Math.sin(2*Math.PI*(t*55))*Math.exp(-tb*9)*.35*ba}
+ return v}
+function fillSrc(kind,pos,n,L,R,fs){for(let i=0;i<n;i++){const s=srcSample(kind,pos+i,fs);L[i]=s;R[i]=s}}
+/* ============ State, presets ============ */
+const DEF={thr:5,ratio:4,out:5,hp:0,mix:100,ceil:10,knee:0,bypass:0,timing:0,atk:atkKnob(10),rel:relKnob(150)};
+const st=Object.assign({},DEF);
+const settings={tips:true,power:false,look:'C'};try{Object.assign(settings,JSON.parse(localStorage.getItem('punchpaw-settings')||'{}'))}catch(e){}
+function core(){const c=ceilDb(st.ceil);return{thr:thrDb(st.thr),s:slopeOf(st.ratio),outDb:outDb(st.out),hp:hpHz(st.hp),mix:st.mix/100,ceil:c===null?0:D2L(c),knee:st.knee,bypass:!!st.bypass,timing:st.timing?1:0,atkMs:atkMsOf(st.atk),relMs:relMsOf(st.rel)}}
+const TYPES=['Kick','Snare','Drum Bus','Perc','Bass','Bus','FX'];
+const F=(name,type,tags,p)=>({name,type,tags,p:Object.assign({},DEF,p),factory:true});
+/* Manual timing preset helper: attack and release in ms */
+const M=(a,r,o)=>Object.assign({timing:1,atk:atkKnob(a),rel:relKnob(r)},o);
+const FACTORY=[
+ F('Start Here','Kick',['start','general'],{out:5}),
+ F('Kick Tight','Kick',['tight','punch'],{thr:4,ratio:5,out:5,hp:4}),
+ F('Hard Dance Punch','Kick',['hard dance','punch'],{thr:3.5,ratio:7,out:6.2,hp:5.5,ceil:8}),
+ F('Kick Peak Tamer','Kick',['limiter','peaks'],{thr:6.5,ratio:8,out:5.8,hp:5,ceil:8}),
+ F('Kick Soft Squeeze','Kick',['gentle','soft knee'],{thr:4,ratio:3,knee:1,out:5,mix:70}),
+ F('Sub Kick Safe','Kick',['sub','low end'],{thr:5,ratio:5,out:5,hp:3}),
+ F('Snare Crack','Snare',['crack','bright'],{thr:4,ratio:5,out:5.6,hp:5}),
+ F('Snare Body','Snare',['body','soft knee'],{thr:5,ratio:4,knee:1,out:4.8}),
+ F('Clap Pop','Snare',['clap','pop'],{thr:4.5,ratio:6,out:5,hp:6}),
+ F('Drum Bus Glue','Drum Bus',['glue','soft knee'],{thr:5.5,ratio:2,knee:1,out:4.3,hp:4}),
+ F('Drum Bus Slam','Drum Bus',['heavy','loud'],{thr:3.5,ratio:6,out:4.6,hp:4,ceil:9}),
+ F('Parallel Punch','Drum Bus',['parallel','mix'],{thr:3,ratio:8,out:3.7,hp:5,mix:35}),
+ F('Room Squash','Drum Bus',['room','squash'],{thr:2.5,ratio:7,out:4.7,mix:60}),
+ F('Hat Control','Perc',['hats','tame'],{thr:5,ratio:4,out:4.4,hp:8}),
+ F('Mix Bus Gentle','Bus',['gentle','mix bus'],{thr:6,ratio:1,knee:1,out:4.3}),
+ F('Inverse Duck','FX',['negative ratio','duck'],{thr:6,ratio:9,out:3.7,mix:50}),
+ F('Kick Punch (Manual)','Kick',['manual timing','punch'],M(30,100,{thr:4,ratio:5,out:5.4,hp:4})),
+ F('Snare Snap (Manual)','Snare',['manual timing','snap'],M(12,60,{thr:4.5,ratio:6,out:5.2,hp:5})),
+ F('Bass Tighten (Manual)','Bass',['manual timing','tight'],M(5,250,{thr:4.5,ratio:4,out:5.2,hp:0})),
+ F('Parallel Drum Crush (Manual)','Drum Bus',['manual timing','parallel'],M(0.5,60,{thr:2,ratio:8,out:4.2,hp:4,mix:40}))
+];
+const LIM={thr:[0,10],ratio:[0,10],out:[0,10],hp:[0,10],mix:[0,100],ceil:[0,10],knee:[0,1],bypass:[0,1],timing:[0,1],atk:[0,10],rel:[0,10]};
+let user=[];try{user=JSON.parse(localStorage.getItem('punchpaw-presets')||'[]').filter(validPreset)}catch(e){user=[]}
+function validPreset(o){if(!o||typeof o!=='object'||typeof o.name!=='string'||!o.name||o.name.length>60||!o.p||typeof o.p!=='object')return false;
+ for(const k in o.p){if(!(k in LIM))continue;const v=o.p[k];if(typeof v!=='number'||!isFinite(v)||v<LIM[k][0]||v>LIM[k][1])return false}return true}
+function normPreset(o){const p=Object.assign({},DEF);for(const k in DEF)if(typeof o.p[k]==='number')p[k]=o.p[k];
+ return{name:String(o.name).slice(0,60),type:TYPES.includes(o.type)?o.type:'Bus',tags:Array.isArray(o.tags)?o.tags.filter(t=>typeof t==='string').slice(0,8).map(t=>t.slice(0,20)):[],p,factory:false}}
+function saveUser(){try{localStorage.setItem('punchpaw-presets',JSON.stringify(user))}catch(e){}}
+let cur={name:'Start Here'};
+const allPresets=()=>FACTORY.concat(user);
+function curPreset(){return allPresets().find(x=>x.name===cur.name)||FACTORY[0]}
+function loadPreset(p){Object.assign(st,DEF,p.p);cur.name=p.name;$('#pName').textContent=p.name;syncUI();toast('Loaded '+p.name)}
+/* ============ DOM helpers ============ */
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!==undefined)e.innerHTML=h;return e};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let toastT;function toast(m){const t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>t.hidden=true,1600)}
+const app=$('#app'),stage=$('#stage'),frame=$('#frame');
+const eng=new Engine();
+/* hi-res canvas: logical size w x h, drawn at 2x. pad = border pixels added outside */
+function hd(cv,w,h,border){const b=border?2:0;cv.width=w*2;cv.height=h*2;cv.style.width=(w+b)+'px';cv.style.height=(h+b)+'px';const g=cv.getContext('2d');g.scale(2,2);return g}
+const gCurve=hd($('#cvCurve'),270,100,true),gShape=hd($('#cvShape'),430,100,true),gHist=hd($('#cvHist'),268,100,true),gIn=hd($('#cvIn'),38,300),gOut=hd($('#cvOut'),38,300);
+/* ============ Top plate (built from data) ============ */
+const top=$('#top');
+let view=0;                                   /* meter view: 0 In, 1 Out, 2 Gain reduction */
+const GRL=[1,2,3,4,6,8,10,15,20,30,40,60];
+const ladColor=v=>v>=20?'var(--r)':v>=10?'var(--o)':v>=4?'var(--y)':'var(--g)';
+const ladLeds=[],viewLeds=[],kneeLeds=[],thrLeds=[],tmLeds=[],autoEls=[];
+function A(c,x,y,h,s){const e=el('div',c,h||'');e.style.left=x+'px';e.style.top=y+'px';if(s)Object.assign(e.style,s);top.appendChild(e);return e}
+function ledBtn(list,x,y,txt,color,tip,fn,w){const l=A('led',x,y);l.style.color=color;list.push(l);A('ltxt',x+12,y,txt);
+ if(fn){const h=el('button','led-hit');h.style.left=(x+(w||64)/2-8)+'px';h.style.top=y+'px';h.style.width=(w||64)+'px';h.setAttribute('aria-label',txt);h.dataset.tip=tip;h.onclick=fn;top.appendChild(h)}else{l.dataset.tip=tip}return l}
+let dialCv,gDial,rdAtk,rdRel;
+(function buildTop(){
+ A('lbl',14,6,'Level meter (dB)');
+ dialCv=el('canvas');dialCv.id='cvDial';dialCv.dataset.tip='Analogue-style level meter. Choose what it shows with the Show buttons: input level, output level, or how much the unit turns the sound down. The colour band marks safe (blue), warning (purple) and clip (pink).';
+ dialCv.style.cssText='position:absolute;left:14px;top:22px;border:1px solid var(--line);border-radius:3px;background:var(--disp)';top.appendChild(dialCv);gDial=hd(dialCv,320,124,true);
+ A('lbl',352,6,'Show');
+ [['In','Meter shows the input level (before the unit).'],['Out','Meter shows the output level (after Output, Mix and Ceiling).'],['GR','Meter shows gain reduction: how many dB the unit is turning the sound down.']].forEach(([t,tip],i)=>ledBtn(viewLeds,360,44+i*28,t,'var(--g)',tip,()=>{view=i;syncUI()},56));
+ A('lbl',452,6,'Gain reduction (dB)');
+ GRL.forEach((v,i)=>{const x=468+i*25.5;const l=A('led',x,48);l.style.color=ladColor(v);l.dataset.tip='Gain reduction lamp: lights when the unit turns the sound down by '+v+' dB or more.';ladLeds.push(l);A('lnum',x,34,String(v))});
+ A('lbl',452,64,'Timing');
+ ledBtn(tmLeds,462,92,'Auto','var(--g)','Auto timing (default, the classic behaviour). The unit decides attack and release by itself from the signal: fast signals get fast times, slow signals get slow times. No knobs needed.',()=>{st.timing=0;syncUI()},70);
+ ledBtn(tmLeds,462,120,'Manual','var(--y)','Manual timing (our addition, not in the classic unit). Shows Attack and Release knobs so you set the times yourself. Press T to switch.',()=>{st.timing=1;syncUI()},80);
+ rdAtk=A('rdt',548,66,'');rdRel=A('rdt',548,84,'');
+ const n1=A('note',548,106,'Program dependent: fast signals get fast times,'),n2=A('note',548,120,'slow signals get slow times. No knobs in Auto.');
+ autoEls.push(rdAtk,rdRel,n1,n2);
+ const autoTip='Auto timing. Attack and release are decided by the signal itself (program dependent). A hard hit that is turned down a lot gets a faster attack: about 15 ms at 10 dB, 5 ms at 20 dB, 3 ms at 30 dB. Release is a steady 125 dB per second, so small dips recover fast and deep ones take longer. Switch to Manual to set the times yourself.';
+ [n1,n2].forEach(e=>e.dataset.tip=autoTip);
+ rdAtk.dataset.tip='Auto attack, live. It gets faster the harder the unit works: about 15 ms for 10 dB, 5 ms for 20 dB, 3 ms for 30 dB. Shows the value right now.';
+ rdRel.dataset.tip='Auto release: the gain comes back at a steady 125 dB per second, so a small dip recovers in a few milliseconds and a deep one takes longer.';
+ A('lbl',790,6,'Knee');
+ ledBtn(kneeLeds,800,44,'Hard','var(--y)','Hard knee: the classic snappy curve. Nothing happens below the threshold, full ratio above it.',()=>{st.knee=0;syncUI()},64);
+ ledBtn(kneeLeds,800,72,'Soft','var(--g)','Soft knee (our addition, not in the classic unit): eases into the ratio over 8 dB around the threshold. Gentler and less obvious.',()=>{st.knee=1;syncUI()},64);
+ A('note',790,98,'Soft is an added option').dataset.tip='Soft knee is our addition. The classic unit has a hard knee only.';
+ A('lbl',922,6,'Threshold');
+ [['Under','var(--g)','Indicator: the signal is well under the threshold. Nothing is being compressed.'],['Near','var(--y)','Indicator: the signal is just under the threshold and about to be compressed.'],['Over','var(--r)','Indicator: the signal is over the threshold and is being turned down.']].forEach(([t,c,tip],i)=>ledBtn(thrLeds,930,44+i*28,t,c,tip,null));
+})();
+/* ============ Knobs ============ */
+const mk=(a,f)=>a.map(f);
+const KN=[
+ {id:'thr',lab:'Threshold',def:5,max:10,labels:mk([0,1,2,3,4,5,6,7,8,9,10],i=>String(thrDb(i))),tip:'The level where the unit starts turning the sound down. Lower it to catch more of the kick. Scale is -40 to 0 dBFS.',val:v=>`<b>${thrDb(v).toFixed(1)}</b> dBFS`},
+ {id:'ratio',lab:'Ratio',def:4,max:10,labels:['1','1.5','2','3','4','6','10','20','∞','-2','-1'],tip:'How hard the unit turns down what goes over the threshold. 1:1 does nothing, 4:1 is firm, infinity is a hard limit. Past infinity the ratio goes negative: the louder the input, the quieter the output (a ducking effect).',val:v=>`<b>${ratioText(v)}</b>`},
+ {id:'out',lab:'Output',def:5,max:10,labels:mk([0,1,2,3,4,5,6,7,8,9,10],i=>(outDb(i)>0?'+':'')+outDb(i)),tip:'Level after the unit, to make up for the loudness it took away. 5 is 0 dB. Range -20 to +20 dB.',val:v=>`<b>${outDb(v)>=0?'+':''}${outDb(v).toFixed(1)}</b> dB`},
+ {id:'hp',lab:'SC High-pass',def:0,max:10,labels:['Off','20','30','40','60','80','100','130','170','220','300'],tip:'Our addition. Sidechain high-pass: the unit stops listening to low rumble below this frequency, so the sub does not make it clamp down and the punch comes through. It only changes what the unit hears, not what you hear. Off to 300 Hz.',val:v=>{const f=hpHz(v);return f===0?'<b>Off</b>':`<b>${f<100?f.toFixed(0):Math.round(f)}</b> Hz`}},
+ {id:'mix',lab:'Mix',def:100,max:100,tip:'Our addition. Blend of the dry signal and the processed signal for parallel compression. Dry on the left, Comp (all processed) on the right.',val:v=>`<span data-end="0" data-tip="Click DRY to set the knob fully dry." style="color:var(--title);letter-spacing:1px;cursor:pointer">DRY</span><span><b>${v.toFixed(0)}%</b> comp</span><span data-end="100" data-tip="Click COMP to set the knob fully processed." style="color:var(--title);letter-spacing:1px;cursor:pointer">COMP</span>`},
+ {id:'ceil',lab:'Ceiling',def:10,max:10,labels:['-12','-10','-9','-8','-7','-6','-5','-4','-3','-1','Off'],tip:'Our addition. A soft clipper at the very end that stops peaks going above this level. Great for catching the last spikes of a kick. Off is fully clean. Range -12 to -1 dBFS.',val:v=>{const c=ceilDb(v);return c===null?'<b>Off</b>':`<b>${c.toFixed(1)}</b> dBFS`}},
+ {id:'atk',lab:'Attack',small:true,x:545,y:58,def:atkKnob(10),max:10,ends:['0.1 ms','100 ms'],tip:'Manual attack (our addition). How fast the unit starts turning the sound down after it goes over the threshold. Slow lets the front of a kick or snare through, so it punches. Fast squashes the front. Range 0.1 ms to 100 ms.',val:v=>`<b>${fmtMs(atkMsOf(v))}</b>`},
+ {id:'rel',lab:'Release',small:true,x:665,y:58,def:relKnob(150),max:10,ends:['10 ms','2 s'],tip:'Manual release (our addition). How fast the unit lets go after the sound drops. Short brings the tail back up fast and adds energy but can pump. Long is smoother. Range 10 ms to 2 s.',val:v=>`<b>${fmtMs(relMsOf(v))}</b>`}
+];
+const knobsEl=$('#knobs');
+function knobSVG(labels,id){let s='<svg viewBox="0 0 150 150" width="150" height="150"><defs><radialGradient id="kg'+id+'" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#f1f1f4"/><stop offset=".55" stop-color="#b9bac2"/><stop offset="1" stop-color="#6e6f78"/></radialGradient></defs>';
+ for(let i=0;i<=20;i++){const a=(-135+i*13.5)*Math.PI/180,major=i%2===0,r1=major?66:68,r2=72;s+=`<line x1="${75+Math.sin(a)*r1}" y1="${75-Math.cos(a)*r1}" x2="${75+Math.sin(a)*r2}" y2="${75-Math.cos(a)*r2}" stroke="${major?'#f4f5f7':'#8c8f99'}" stroke-width="${major?1.8:1}"/>`}
+ if(labels)labels.forEach((t,i)=>{const a=(-135+i*27)*Math.PI/180;s+=`<text x="${75+Math.sin(a)*57}" y="${75-Math.cos(a)*57+3.5}" text-anchor="middle" font-size="${t.length>3?8.5:10}" fill="#c9cbd3" font-family="Barlow Condensed,Arial Narrow,Arial,sans-serif" font-weight="600">${t}</text>`});
+ s+='<circle cx="75" cy="75" r="46" fill="#0b0b0d" stroke="#000"/><circle cx="75" cy="75" r="44" fill="none" stroke="#3a3c43" stroke-width="3" stroke-dasharray="1.4 1.6"/><g class="rot"><circle cx="75" cy="75" r="37" fill="url(#kg'+id+')" stroke="#4a4b53"/><circle cx="75" cy="75" r="33" fill="none" stroke="rgba(0,0,0,.25)"/><line x1="75" y1="75" x2="75" y2="46" stroke="#16171a" stroke-width="4" stroke-linecap="round"/></g></svg>';return s}
+const knobRefs={};
+KN.forEach((k,idx)=>{if(idx===3){const d=el('div','vdiv','Added by Studio 87');d.dataset.tip='The three knobs to the right are our additions. They are not part of the classic unit.';knobsEl.appendChild(d)}
+ const c=el('div',k.small?'tmk':'kcell');c.innerHTML=`<div class="lab">${k.lab}</div>`;const kn=el('div','knob',knobSVG(k.id==='mix'||k.small?null:k.labels,k.id));kn.tabIndex=0;kn.setAttribute('role','slider');kn.setAttribute('aria-label',k.lab);kn.setAttribute('aria-valuemin',0);kn.setAttribute('aria-valuemax',k.max);kn.dataset.tip=k.tip;
+ const v=el('div','kval');c.appendChild(kn);c.appendChild(v);if(k.small){c.style.left=k.x+'px';c.style.top=k.y+'px';k.cell=c;[['e0',k.ends[0]],['e1',k.ends[1]]].forEach(([cl,t])=>{const s=el('span','kend '+cl,t);s.dataset.tip=k.tip;c.appendChild(s)});top.appendChild(c)}else knobsEl.appendChild(c);knobRefs[k.id]={kn,v,k};
+ let drag=null;
+ kn.addEventListener('pointerdown',e=>{kn.setPointerCapture(e.pointerId);drag={y:e.clientY,v:st[k.id]};e.preventDefault()});
+ kn.addEventListener('pointermove',e=>{if(!drag)return;const sc=curScale()||1,d=-(e.clientY-drag.y)/sc;st[k.id]=clamp(drag.v+d*(k.max/250)*(e.shiftKey?.1:1),0,k.max);syncUI()});
+ kn.addEventListener('pointerup',()=>drag=null);kn.addEventListener('pointercancel',()=>drag=null);
+ kn.addEventListener('dblclick',()=>{st[k.id]=k.def;syncUI()});
+ kn.addEventListener('wheel',e=>{e.preventDefault();st[k.id]=clamp(st[k.id]+(e.deltaY<0?1:-1)*k.max*(e.shiftKey?.002:.02),0,k.max);syncUI()},{passive:false});
+ kn.addEventListener('keydown',e=>{const s=k.max*(e.shiftKey?.002:.01);if(e.key==='ArrowUp'||e.key==='ArrowRight'){st[k.id]=clamp(st[k.id]+s,0,k.max);syncUI();e.preventDefault()}if(e.key==='ArrowDown'||e.key==='ArrowLeft'){st[k.id]=clamp(st[k.id]-s,0,k.max);syncUI();e.preventDefault()}if(e.key==='Home'){st[k.id]=0;syncUI()}if(e.key==='End'){st[k.id]=k.max;syncUI()}})});
+knobRefs.mix.v.style.cssText='display:flex;justify-content:space-between;width:150px';knobRefs.mix.v.addEventListener('click',e=>{const t=e.target.closest('[data-end]');if(t){st.mix=+t.dataset.end;syncUI()}});
+/* ============ Sync UI from state ============ */
+function syncUI(){
+ const ang=(v,max)=>-135+270*v/max;
+ KN.forEach(k=>{const r=knobRefs[k.id];r.kn.querySelector('.rot').setAttribute('transform','rotate('+ang(st[k.id],k.max)+' 75 75)');r.v.innerHTML=k.val(st[k.id]);r.kn.setAttribute('aria-valuenow',st[k.id].toFixed(2))});
+ viewLeds.forEach((l,i)=>l.classList.toggle('on',i===view));tmLeds.forEach((l,i)=>l.classList.toggle('on',i===st.timing));autoEls.forEach(e=>e.style.display=st.timing?'none':'');KN.forEach(k=>{if(k.cell)k.cell.style.display=st.timing?'':'none'});kneeLeds.forEach((l,i)=>l.classList.toggle('on',i===st.knee));
+ {const bb=$('#bBypass');bb.classList.toggle('on',!!st.bypass);bb.setAttribute('aria-pressed',st.bypass?'true':'false')}
+ eng.setP(core());
+ $('#pName').textContent=cur.name+(isDirty()?' *':'');
+}
+function isDirty(){const p=curPreset();for(const k in DEF)if(Math.abs((p.p[k]||0)-st[k])>1e-6)return true;return false}
+
+/* ============ Wood (same three colours and vertical grain as the PurrOne wood) ============ */
+function mul32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function drawWood(cv,seed,edgeRight){const w=cv.width=104,h=cv.height=1280,g=cv.getContext('2d'),r=mul32(seed);
+ g.fillStyle='#3d2210';g.fillRect(0,0,w,h);
+ for(let x=0;x<w;x++){const a=r();g.fillStyle='rgba(123,74,38,'+(.40*(.4+.6*a))+')';g.fillRect(x,0,1,h);
+  if(r()<.35){g.fillStyle='rgba(90,52,25,'+(.75*r())+')';const y0=r()*h;g.fillRect(x,y0,1,h*(.2+.6*r()))}
+  if(r()<.12){g.fillStyle='rgba(0,0,0,.35)';g.fillRect(x,0,1,h)}}
+ g.fillStyle='#000';g.fillRect(edgeRight?0:w-3,0,3,h)}
+drawWood($('#cheekL canvas'),11,true);drawWood($('#cheekR canvas'),29,false);
+/* ============ Meters and displays ============ */
+function tokens(){const c=getComputedStyle(app);return{disp:c.getPropertyValue('--disp').trim(),line:c.getPropertyValue('--line').trim(),dim:c.getPropertyValue('--dim').trim(),acc:c.getPropertyValue('--accent').trim(),ink:c.getPropertyValue('--ink').trim(),title:c.getPropertyValue('--title').trim(),pink:'#FF7BB1'}}
+let T=tokens();
+const clipLatch={in:false,out:false};
+function drawMeter(g,lin,key){const w=38,h=300,mn=-60,mx=6,y=db=>h-6-(Math.min(mx,Math.max(mn,db))-mn)/(mx-mn)*(h-12);
+ g.clearRect(0,0,w,h);g.fillStyle=T.disp;g.fillRect(0,0,w,h);
+ const db=L2D(lin),tp=y(db);
+ const grad=g.createLinearGradient(0,y(mn),0,y(mx));const f=d2=>(d2-mn)/(mx-mn);
+ grad.addColorStop(0,'#6CC9F5');grad.addColorStop(f(-12),'#6CC9F5');grad.addColorStop(f(-12)+.001,'#A43DFF');grad.addColorStop(f(0),'#A43DFF');grad.addColorStop(f(0)+.001,'#FF1383');grad.addColorStop(1,'#FF1383');
+ g.fillStyle=grad;g.fillRect(2,tp,12,y(mn)-tp);
+ g.fillStyle=T.dim;g.font='9px JetBrains Mono,monospace';g.textAlign='right';
+ for(const t of[0,-6,-12,-24,-36,-48]){const yy=y(t);g.fillRect(14,yy,3,1);g.fillText(String(t),w-1,yy+3)}
+ if(db>=0)clipLatch[key]=true;g.fillStyle=clipLatch[key]?'#FF1383':'#2a2c31';g.fillRect(2,0,12,4)}
+function paw(g,x,y,s,col){g.fillStyle=col;g.beginPath();g.ellipse(x,y+s*.3,s*.55,s*.45,0,0,7);g.fill();[[-.85,-.3],[-.3,-.85],[.3,-.85],[.85,-.3]].forEach(([dx,dy])=>{g.beginPath();g.ellipse(x+dx*s,y+dy*s,s*.2,s*.3,dx*.6,0,7);g.fill()})}
+function drawDial(){const g=gDial,w=320,h=124;g.clearRect(0,0,w,h);g.fillStyle=T.disp;g.fillRect(0,0,w,h);
+ const gr=view===2,mn=gr?0:-40,mx=gr?30:3,cx=160,cy=170,R=134,a0=-50,a1=50;
+ const ang=v=>(a0+(clamp(v,mn,mx)-mn)/(mx-mn)*(a1-a0))*Math.PI/180;
+ paw(g,160,84,22,'rgba(255,123,177,.07)');
+ const bands=gr?[[0,10,'#6CC9F5'],[10,20,'#A43DFF'],[20,30,'#FF1383']]:[[-40,-12,'#6CC9F5'],[-12,0,'#A43DFF'],[0,3,'#FF1383']];
+ g.lineWidth=5;bands.forEach(([v0,v1,c])=>{g.strokeStyle=c;g.beginPath();g.arc(cx,cy,R-3,-Math.PI/2+ang(v0),-Math.PI/2+ang(v1));g.stroke()});
+ const maj=gr?[0,3,6,10,15,20,30]:[-40,-30,-20,-12,-6,0,3],step=gr?1:2;
+ g.strokeStyle=T.dim;g.lineWidth=1;for(let v=mn;v<=mx+.01;v+=step){const a=ang(v),isM=maj.includes(v);g.strokeStyle=isM?T.ink:T.dim;g.beginPath();g.moveTo(cx+Math.sin(a)*(R-(isM?16:12)),cy-Math.cos(a)*(R-(isM?16:12)));g.lineTo(cx+Math.sin(a)*(R-7),cy-Math.cos(a)*(R-7));g.stroke()}
+ g.fillStyle=T.ink;g.font='10px JetBrains Mono,monospace';g.textAlign='center';maj.forEach(v=>{const a=ang(v);g.fillText((gr||v<=0?'':'+')+v,cx+Math.sin(a)*(R-27),cy-Math.cos(a)*(R-27)+3)});
+ const val=gr?eng.grNow:10*Math.log10((view===0?eng.vuI:eng.vuO)+1e-12),a=ang(val);
+ g.strokeStyle='rgba(0,0,0,.5)';g.lineWidth=3;g.beginPath();g.moveTo(cx+2,cy+2);g.lineTo(cx+2+Math.sin(a)*(R-12),cy+2-Math.cos(a)*(R-12));g.stroke();
+ g.strokeStyle=T.ink;g.lineWidth=2;g.beginPath();g.moveTo(cx,cy);g.lineTo(cx+Math.sin(a)*(R-12),cy-Math.cos(a)*(R-12));g.stroke();
+ g.fillStyle=T.title;g.textAlign='left';g.font='700 11px Barlow Condensed,Arial Narrow,sans-serif';g.fillText(gr?'GAIN REDUCTION':view===0?'INPUT':'OUTPUT',8,14);
+ g.fillStyle=T.ink;g.font='600 12px JetBrains Mono,monospace';g.textAlign='left';g.fillText((val<=-60?'-inf':val.toFixed(1))+' dB',8,28);
+ g.fillStyle=T.dim;g.textAlign='right';g.font='italic 800 12px Barlow Condensed,Arial Narrow,sans-serif';g.fillText('PUNCHPAW',312,116)}
+const hist=new Float32Array(360);let hi=0;
+const outOfGr=(v,p)=>{const gr=grOf(v-p.thr,p.s,p.knee);return v-Math.min(60,gr)+p.outDb};
+function drawCurve(){const g=gCurve,w=270,h=100;g.fillStyle=T.disp;g.fillRect(0,0,w,h);
+ const x0=-60,x1=6,y0=-60,y1=12,X=v=>26+(v-x0)/(x1-x0)*(w-32),Y=v=>h-14-(v-y0)/(y1-y0)*(h-22);
+ g.strokeStyle=T.line;g.lineWidth=1;g.fillStyle=T.dim;g.font='9px JetBrains Mono,monospace';g.textAlign='center';
+ for(const v of[-60,-48,-36,-24,-12,0]){g.beginPath();g.moveTo(X(v),4);g.lineTo(X(v),h-14);g.stroke();g.fillText(v,X(v),h-4)}
+ g.textAlign='right';for(const v of[-48,-24,0,12]){g.beginPath();g.moveTo(26,Y(v));g.lineTo(w-6,Y(v));g.stroke();g.fillText(v,23,Y(v)+3)}
+ g.strokeStyle='#4a4d55';g.setLineDash([3,3]);g.beginPath();g.moveTo(X(-60),Y(-60));g.lineTo(X(6),Y(6));g.stroke();g.setLineDash([]);
+ const p=eng.p;
+ if(p.ceil>0){const cd=L2D(p.ceil);g.strokeStyle=T.pink;g.setLineDash([5,3]);g.lineWidth=1.2;g.beginPath();g.moveTo(26,Y(cd));g.lineTo(w-6,Y(cd));g.stroke();g.setLineDash([])}
+ g.strokeStyle=T.acc;g.lineWidth=2;g.beginPath();
+ for(let v=x0;v<=x1;v+=.5){let o=p.bypass?v:outOfGr(v,p);if(!p.bypass&&p.mix<1)o=10*Math.log10(Math.pow(10,v/10)*(1-p.mix)+Math.pow(10,o/10)*p.mix);if(!p.bypass&&p.ceil>0){const lim=L2D(p.ceil);if(o>lim-4)o=L2D(clipTo(D2L(o),p.ceil))}
+  (v===x0?g.moveTo:g.lineTo).call(g,X(v),Y(clamp(o,y0,y1)))}g.stroke();
+ const li=10*Math.log10(eng.vuI+1e-12),lo=10*Math.log10(eng.vuO+1e-12);if(li>-60){g.fillStyle='#fff';g.beginPath();g.arc(X(Math.min(x1,li)),Y(clamp(lo,y0,y1)),4,0,7);g.fill()}}
+function drawShape(){const g=gShape,w=430,h=100;g.fillStyle=T.disp;g.fillRect(0,0,w,h);
+ const Y=db=>h-14-(clamp(db,-48,0)+48)/48*(h-22),X=i=>28+i/(SCN-1)*(w-34);
+ g.strokeStyle=T.line;g.fillStyle=T.dim;g.font='9px JetBrains Mono,monospace';g.textAlign='right';g.lineWidth=1;
+ for(const d of[0,-12,-24,-36,-48]){g.beginPath();g.moveTo(28,Y(d));g.lineTo(w-4,Y(d));g.stroke();g.fillText(d,25,Y(d)+3)}
+ g.textAlign='center';for(const t of[0,.4,.8,1.2]){const x=28+(t/1.2)*(w-34);g.fillText(t===0?'':'+'+t.toFixed(1)+' s',Math.min(x,w-14),h-3)}
+ const idx=i=>(eng.scI+i)%SCN;
+ const path=(arr,close)=>{g.beginPath();g.moveTo(X(0),Y(-48));for(let i=0;i<SCN;i++)g.lineTo(X(i),Y(L2D(arr[idx(i)])));g.lineTo(X(SCN-1),Y(-48));g.closePath()};
+ path(eng.scIn);g.fillStyle='rgba(169,173,184,.30)';g.fill();
+ path(eng.scOut);g.fillStyle=T.acc;g.globalAlpha=.45;g.fill();g.globalAlpha=1;g.strokeStyle=T.acc;g.lineWidth=1.3;g.stroke();
+ g.fillStyle='rgba(255,123,177,.65)';for(let i=0;i<SCN;i++){const gr=eng.scGr[idx(i)];if(gr>.1){const bh=Math.min(1,gr/24)*(h-30);g.fillRect(X(i)-.6,4,1.4,bh)}}}
+function drawHist(){const g=gHist,w=268,h=100;g.fillStyle=T.disp;g.fillRect(0,0,w,h);
+ const Y=d=>8+d/30*(h-22);g.strokeStyle=T.line;g.fillStyle=T.dim;g.font='9px JetBrains Mono,monospace';g.textAlign='right';g.lineWidth=1;
+ for(const d of[0,6,12,18,24,30]){g.beginPath();g.moveTo(26,Y(d));g.lineTo(w-4,Y(d));g.stroke();g.fillText('-'+d,23,Y(d)+3)}
+ g.beginPath();g.moveTo(28,Y(0));for(let i=0;i<360;i++){const v=hist[(hi+i)%360];g.lineTo(28+i/359*(w-32),Y(Math.min(30,v)))}g.lineTo(w-4,Y(0));g.closePath();
+ g.fillStyle='rgba(164,61,255,.35)';g.fill();g.strokeStyle='#CD92FE';g.lineWidth=1.6;g.stroke();
+ g.fillStyle=T.ink;g.textAlign='left';g.font='11px JetBrains Mono,monospace';g.fillText('GR '+eng.grNow.toFixed(1)+' dB',34,h-6);g.textAlign='right';g.fillStyle=T.dim;g.fillText(eng.p.timing?'Atk '+fmtMs(eng.p.atkMs)+'  Rel '+fmtMs(eng.p.relMs):'Auto timing',w-6,h-6)}
+let rdLast='';
+function drawLeds(){const gr=eng.grNow;ladLeds.forEach((l,i)=>l.classList.toggle('on',gr>=GRL[i]-.25));
+ const ov=eng.over,mode=gr>0.3?2:(ov>-6?1:0);thrLeds.forEach((l,i)=>l.classList.toggle('on',i===mode));
+ const a=attackMs(Math.max(gr,0.01)),s='<span style="color:var(--title)">Attack</span> now <b>'+a.toFixed(1)+' ms</b>|<span style="color:var(--title)">Release</span> <b>'+REL_DBPS+' dB/s</b>';
+ if(s!==rdLast){rdLast=s;const q=s.split('|');rdAtk.innerHTML=q[0];rdRel.innerHTML=q[1]}}
+/* ============ Audio preview + animation loop ============ */
+let ctx=null,node=null,playing=false,pos=0,lastT=0,visible=true,srcKind='kick';
+function startAudio(){if(!ctx){ctx=new (window.AudioContext||window.webkitAudioContext)();eng.prepare(ctx.sampleRate);
+  node=ctx.createScriptProcessor(1024,0,2);const bl=new Float32Array(1024),br=new Float32Array(1024);
+  node.onaudioprocess=e=>{const o0=e.outputBuffer.getChannelData(0),o1=e.outputBuffer.getChannelData(1),n=o0.length;fillSrc(srcKind,pos,n,bl,br,ctx.sampleRate);pos+=n;
+   for(let i=0;i<n;i++){bl[i]*=.8;br[i]*=.8}eng.process(bl,br,n);o0.set(bl.subarray(0,n));o1.set(br.subarray(0,n))};
+  node.connect(ctx.destination)}
+ ctx.resume();playing=true;$('#rigPlay').innerHTML='&#9632; Stop preview';$('#rigPlay').classList.add('on')}
+function stopAudio(){if(ctx)ctx.suspend();playing=false;$('#rigPlay').innerHTML='&#9654; Play preview';$('#rigPlay').classList.remove('on')}
+$('#rigPlay').onclick=()=>playing?stopAudio():startAudio();
+$('#rigSrc').onchange=e=>{srcKind=e.target.value;if(srcKind==='file'&&!fileBuf)$('#rigFileIn').click()};
+$('#rigFile').onclick=()=>$('#rigFileIn').click();
+$('#rigFileIn').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const c=new (window.AudioContext||window.webkitAudioContext)();const b=await c.decodeAudioData(await f.arrayBuffer());
+  const d=b.getChannelData(0),m=new Float32Array(d.length);let pk=0;for(let i=0;i<d.length;i++){m[i]=d[i];pk=Math.max(pk,Math.abs(d[i]))}const k=pk>0?.9/pk:1;for(let i=0;i<m.length;i++)m[i]*=k;
+  fileBuf=m;srcKind='file';$('#rigSrc').value='file';toast('Loaded '+f.name.slice(0,30));c.close()}catch(err){toast('Could not read that file')}};
+const sl=new Float32Array(2048),sr=new Float32Array(2048);
+function runSynth(dt){const fs=eng.fs;let left=Math.round(fs*dt);while(left>0){const n=Math.min(2048,left);left-=n;fillSrc(srcKind,pos,n,sl,sr,fs);pos+=n;for(let i=0;i<n;i++){sl[i]*=.8;sr[i]*=.8}eng.process(sl,sr,n)}}
+function draw(){drawMeter(gIn,eng.inPk,'in');drawMeter(gOut,eng.outPk,'out');
+ $('#pkIn').textContent=eng.inPk>1e-4?L2D(eng.inPk).toFixed(1):'-inf';$('#pkOut').textContent=eng.outPk>1e-4?L2D(eng.outPk).toFixed(1):'-inf';
+ drawDial();drawCurve();drawShape();drawHist();drawLeds()}
+function frameLoop(t){requestAnimationFrame(frameLoop);if(!visible||document.hidden){lastT=t;return}
+ const minGap=settings.power?1000/16:0;if(t-lastT<minGap&&lastT)return;const dt=Math.min(.1,(t-lastT)/1000||1/60);lastT=t;
+ if(!playing)runSynth(dt);
+ hist[hi]=eng.grPk;hi=(hi+1)%360;draw()}
+$('#cvIn').onclick=()=>clipLatch.in=false;$('#cvOut').onclick=()=>clipLatch.out=false;
+new IntersectionObserver(es=>{visible=es[0].isIntersecting}).observe(frame);
+
+/* ============ Modals ============ */
+const modal=$('#modal');
+function openModal(title,body,foot,wide){modal.innerHTML='';modal.hidden=false;const d=el('div','dlg');if(wide)d.style.width=wide;const h=el('h2','',esc(title));const x=el('button','btn','Close');x.onclick=closeModal;h.appendChild(x);
+ d.appendChild(h);const b=el('div','dbody');if(typeof body==='string')b.innerHTML=body;else b.appendChild(body);d.appendChild(b);if(foot){const f=el('div','dfoot');foot.forEach(a=>f.appendChild(a));d.appendChild(f)}modal.appendChild(d);return b}
+function closeModal(){modal.hidden=true;modal.innerHTML=''}
+modal.addEventListener('pointerdown',e=>{if(e.target===modal)closeModal()});
+const btn=(t,fn,c)=>{const b=el('button','btn'+(c?' '+c:''),t);b.onclick=fn;return b};
+function applySettings(){app.dataset.look=settings.look;T=tokens();try{localStorage.setItem('punchpaw-settings',JSON.stringify(settings))}catch(e){}}
+applySettings();
+$('#bSettings').onclick=()=>{const b=openModal('Settings','<label><input type="checkbox" id="sTips"> Info bubbles after hovering for about one second</label><label><input type="checkbox" id="sPow"> Power saving (redraw at 16 frames per second)</label><label>Colour look <select id="sLook"><option value="C">Look C, charcoal and white (default)</option><option value="A">Look A, neon navy</option><option value="B">Look B, purple soda pop</option></select></label><p style="color:var(--dim)">The look is saved with the plugin settings, not with each preset. Wood, cat logo, meter colours and dB scales stay the same in all three.</p><label><button class="btn" id="sReset">Reset window to 100%</button></label>',null);
+ b.querySelector('#sTips').checked=settings.tips;b.querySelector('#sPow').checked=settings.power;b.querySelector('#sLook').value=settings.look;
+ b.querySelector('#sTips').onchange=e=>{settings.tips=e.target.checked;applySettings()};b.querySelector('#sPow').onchange=e=>{settings.power=e.target.checked;applySettings()};
+ b.querySelector('#sLook').onchange=e=>{settings.look=e.target.value;applySettings()};b.querySelector('#sReset').onclick=()=>{setScale(s0);toast('Window reset to 100%')}};
+$('#bGuide').onclick=()=>openModal('Guide',`<div class="gcols"><div><h3 class="gh">What is PunchPaw?</h3>
+<ul class="gl"><li><b>It is a compressor.</b> It turns the loud parts down so hits sound tighter and punchier.</li>
+<li><b>Based on:</b> the classic dbx 160 style from the 1970s. Three main controls (Threshold, Ratio, Output), a hard knee and a true RMS detector. Written from public manuals. Not affiliated with dbx.</li>
+<li><b>Made for:</b> drums and bass. Kick, snare, drum bus, bass and parallel crush (use the Mix knob).</li>
+<li><b>Not for:</b> mastering or a whole song. It is fast and snappy and it adds colour. For a full mix use a gentle bus or mastering compressor.</li>
+<li><b>Attack and release:</b> the classic unit sets them for you (Auto). Fast hits get fast times, slow signals get slow times. Our optional Timing switch adds Manual: Attack 0.1 ms to 100 ms and Release 10 ms to 2 s. Slower attack lets the front of a kick through, so it punches. Faster attack squashes it. Shorter release brings the tail back up but can pump. Longer release is smoother.</li></ul></div>
+<div><p><b>Signal flow:</b> the sound goes in, the sidechain high-pass (ours) filters a copy that only the detector hears, the detector reads its loudness (RMS), the gain computer decides how much to turn down using Threshold, Ratio and Knee, automatic attack and release shape the movement, then Output, Mix and Ceiling (ours) finish the sound.</p>
+<table><tr><td><kbd>Space</kbd></td><td>Start or stop the preview</td></tr><tr><td><kbd>B</kbd></td><td>Bypass on or off, to compare with the dry sound</td></tr><tr><td><kbd>V</kbd></td><td>Meter shows In, Out or Gain reduction</td></tr><tr><td><kbd>K</kbd></td><td>Hard or soft knee</td></tr><tr><td><kbd>T</kbd></td><td>Timing: Auto or Manual</td></tr><tr><td>Knob: drag, wheel, arrows</td><td>Hold <kbd>Shift</kbd> for fine steps, double-click to reset</td></tr><tr><td>Wood cheeks</td><td>Double-click to reset the window to 100%</td></tr></table>
+<p><b>Where to start:</b> load Start Here with the kick loop. Lower Threshold until Gain reduction shows 4 to 8 dB on each hit, raise Output to match the loudness, then press B to compare. For more punch, set Threshold so only the body of the kick is turned down, and raise SC High-pass so the sub does not trigger the unit. Attack and release are automatic until you switch Timing to Manual.</p>
+<p><b>Our additions</b> (not in the classic unit): Soft knee, SC High-pass, Mix, Ceiling and the Manual timing switch (Attack and Release knobs). The classic parts are the hard knee, the RMS detector, the automatic attack and release, and the Threshold, Ratio and Output controls.</p></div></div>`,null,'1040px');
+$('#bAbout').onclick=()=>openModal('About & Support',`<p><b>PunchPaw</b> by Studio 87, version 1.1 (design mockup). A free open source limiter inspired by classic hardware, written from public manuals. Licence AGPL-3.0-or-later. Collects nothing and never uses the network.</p>
+<div class="aboutbtns"><a class="btn" href="https://github.com/SpeakingColors/PunchPaw" target="_blank" rel="noopener">GitHub</a><a class="btn" href="https://github.com/SpeakingColors/PunchPaw/releases" target="_blank" rel="noopener">Releases</a><a class="btn" href="https://ko-fi.com/studio87" target="_blank" rel="noopener">Ko-fi studio87</a></div>
+<p><b>Your presets are saved here:</b><br>Linux <kbd>~/.local/share/Studio 87/PunchPaw/presets</kbd><br>Windows <kbd>%APPDATA%\\Studio 87\\PunchPaw\\presets</kbd><br>macOS <kbd>~/Library/Application Support/Studio 87/PunchPaw/presets</kbd></p>
+<p><b>Install and uninstall:</b> the offline installer puts the VST3 in the standard folder for your system. The uninstaller removes everything it installed and asks before touching your presets (it keeps them by default).</p>
+<p>Support on Ko-fi is entirely optional. Nothing is locked.</p>`,null);
+
+/* Preset browser */
+let pbSel=null,pbType='All',pbQ='';
+function openBrowser(){pbSel=pbSel||cur.name;const wrap=el('div','');wrap.innerHTML='<div class="pb"><div style="display:flex;flex-direction:column;min-height:0"><input id="pbQ" placeholder="Search name, type or tag" style="margin-bottom:6px"><div class="chips" id="pbChips"></div><div class="list" id="pbList" style="flex:1"></div></div><div id="pbSide"></div></div>';
+ const b=openModal('Presets',wrap,[btn('Import',openImport),btn('Export all',()=>openExport(null)),btn('Save current',()=>{closeModal();openSave()})],'820px');
+ const q=b.querySelector('#pbQ');q.value=pbQ;q.oninput=()=>{pbQ=q.value;renderList()};
+ function renderList(){const ch=b.querySelector('#pbChips');ch.innerHTML='';['All'].concat(TYPES).forEach(t=>{const c=el('button','chip'+(pbType===t?' on':''),t);c.onclick=()=>{pbType=t;renderList()};ch.appendChild(c)});
+  const l=b.querySelector('#pbList');l.innerHTML='';const qq=pbQ.toLowerCase();
+  allPresets().filter(p=>(pbType==='All'||p.type===pbType)&&(!qq||(p.name+' '+p.type+' '+p.tags.join(' ')).toLowerCase().includes(qq))).forEach(p=>{
+   const it=el('div','item'+(pbSel===p.name?' sel':''),'<span>'+esc(p.name)+'</span><small>'+(p.factory?p.type:'mine &middot; '+p.type)+'</small>');it.onclick=()=>{pbSel=p.name;renderList()};it.ondblclick=()=>{loadPreset(p);closeModal()};l.appendChild(it)});
+  const p=allPresets().find(x=>x.name===pbSel),s=b.querySelector('#pbSide');s.innerHTML='';if(!p)return;
+  s.innerHTML='<h3 style="margin:0 0 4px">'+esc(p.name)+'</h3><div style="color:var(--dim)">'+p.type+(p.tags.length?' &middot; '+p.tags.map(esc).join(', '):'')+(p.factory?' &middot; factory':' &middot; yours')+'</div><p style="color:var(--dim)">'+ratioText(p.p.ratio)+' &middot; Threshold '+thrDb(p.p.thr).toFixed(0)+' dB &middot; Output '+(outDb(p.p.out)>=0?'+':'')+outDb(p.p.out).toFixed(0)+' dB'+(p.p.mix<100?' &middot; Mix '+p.p.mix+'%':'')+'</p>';
+  const row=el('div','',''),mk=(t,f)=>{const x=btn(t,f);x.style.margin='0 6px 6px 0';row.appendChild(x)};
+  mk('Load',()=>{loadPreset(p);closeModal()});mk('Export',()=>openExport(p));
+  if(!p.factory){mk('Edit properties',()=>openSave(p));mk('Delete',()=>{user=user.filter(x=>x!==p);saveUser();if(cur.name===p.name){cur.name='Start Here'}pbSel=null;syncUI();renderList()})}
+  s.appendChild(row)}
+ renderList()}
+$('#pName').onclick=openBrowser;
+$('#pName').ondblclick=()=>{const p=curPreset();if(p.factory){toast('Save a copy first, factory presets cannot be renamed');return}openSave(p)};
+$('#pPrev').onclick=()=>step(-1);$('#pNext').onclick=()=>step(1);
+function step(d){const a=allPresets();let i=a.findIndex(p=>p.name===cur.name);i=(i+d+a.length)%a.length;loadPreset(a[i])}
+function openSave(edit){const p0=edit||null;const body=el('div','','<label>Name <input id="svN" maxlength="60" style="flex:1"></label><label>Type <select id="svT">'+TYPES.map(t=>'<option>'+t+'</option>').join('')+'</select></label><label>Tags <input id="svG" placeholder="comma separated" style="flex:1"></label><div id="svW" class="warn"></div>');
+ const nm=body.querySelector('#svN'),ty=body.querySelector('#svT'),tg=body.querySelector('#svG'),wr=body.querySelector('#svW');
+ nm.value=p0?p0.name:(isDirty()||curPreset().factory?curPreset().name.replace(/ \*$/,'')+' mine':curPreset().name);ty.value=p0?p0.type:curPreset().type;tg.value=p0?p0.tags.join(', '):curPreset().tags.join(', ');
+ const doSave=(name)=>{const tags=tg.value.split(',').map(s=>s.trim()).filter(Boolean).slice(0,8);
+  if(p0){p0.name=name;p0.type=ty.value;p0.tags=tags;if(cur.name===p0.oldName)cur.name=name}
+  else{const o={name,type:ty.value,tags,p:Object.assign({},st),factory:false};user=user.filter(x=>x.name!==name);user.push(o);cur.name=name}
+  saveUser();closeModal();syncUI();toast('Saved '+name)};
+ const foot=[btn('Cancel',closeModal),btn(p0?'Save changes':'Save',()=>{const name=nm.value.trim();if(!name){wr.textContent='Give it a name.';return}
+  if(FACTORY.some(f=>f.name===name)){wr.textContent='That is a factory name. Pick another, or it would be confusing.';return}
+  const clash=user.find(x=>x.name===name&&x!==p0);
+  if(clash){wr.innerHTML='A preset named <b>'+esc(name)+'</b> already exists. ';const o=btn('Overwrite',()=>doSave(name)),n=btn('Save as new',()=>{nm.value=name+' 2';wr.textContent=''});wr.appendChild(o);wr.appendChild(document.createTextNode(' '));wr.appendChild(n);return}
+  if(p0)p0.oldName=cur.name;doSave(name)},'on')];
+ openModal(p0?'Edit preset':'Save preset',body,foot,'520px')}
+$('#pSave').onclick=()=>openSave();
+$('#bBypass').onclick=()=>{st.bypass^=1;syncUI()};
+function openExport(p){const data=p?{punchpaw:1,presets:[{name:p.name,type:p.type,tags:p.tags,p:p.p}]}:{punchpaw:1,presets:user.map(x=>({name:x.name,type:x.type,tags:x.tags,p:x.p}))};
+ const body=el('div','','<p>Copy this text and keep it as your backup. Import it again later or on another computer.</p><textarea id="exT" readonly></textarea>');body.querySelector('#exT').value=JSON.stringify(data,null,1);
+ const foot=[btn('Copy',()=>{const t=body.querySelector('#exT');t.select();try{navigator.clipboard.writeText(t.value).then(()=>toast('Copied'),()=>toast('Press Ctrl+C to copy'))}catch(e){toast('Press Ctrl+C to copy')}}),btn('Back',openBrowser)];openModal('Export',body,foot,'620px')}
+function openImport(){const body=el('div','','<p>Paste exported preset text here. Unknown settings are ignored and anything invalid is refused.</p><textarea id="imT"></textarea><div id="imW" class="warn"></div>');
+ const foot=[btn('Back',openBrowser),btn('Import',()=>{const w=body.querySelector('#imW');try{const o=JSON.parse(body.querySelector('#imT').value);if(!o||o.punchpaw!==1||!Array.isArray(o.presets))throw 0;
+  const ok=o.presets.filter(validPreset);if(!ok.length||ok.length!==o.presets.length)throw 0;ok.forEach(x=>{const n=normPreset(x);if(FACTORY.some(f=>f.name===n.name))n.name+=' (imported)';user=user.filter(u=>u.name!==n.name);user.push(n)});saveUser();toast('Imported '+ok.length+' preset'+(ok.length>1?'s':''));openBrowser()}catch(e){w.textContent='That text is not a valid PunchPaw preset export.'}},'on')];openModal('Import',body,foot,'620px')}
+/* ============ Tooltips ============ */
+let tipT=null,tipEl=$('#tip');
+stage.addEventListener('pointerover',e=>{const t=e.target.closest('[data-tip]');clearTimeout(tipT);tipEl.hidden=true;if(!t||!settings.tips||!t.dataset.tip)return;
+ tipT=setTimeout(()=>{const r=t.getBoundingClientRect(),sr=stage.getBoundingClientRect(),sc=curScale();tipEl.textContent=t.dataset.tip;tipEl.hidden=false;
+  let x=(r.left-sr.left)/sc,y=(r.bottom-sr.top)/sc+6;const tw=tipEl.offsetWidth;x=Math.max(60,Math.min(1200-tw-8,x));if(y+tipEl.offsetHeight>636)y=(r.top-sr.top)/sc-tipEl.offsetHeight-6;tipEl.style.left=x+'px';tipEl.style.top=y+'px'},1000)});
+stage.addEventListener('pointerout',e=>{if(!e.relatedTarget||!e.relatedTarget.closest||!e.relatedTarget.closest('[data-tip]')){clearTimeout(tipT);tipEl.hidden=true}});
+stage.addEventListener('pointerdown',()=>{clearTimeout(tipT);tipEl.hidden=true});
+/* ============ Scaling and resize handles ============ */
+const W0=1200,H0=640;let s0=1,sc=1;
+function avail(){return Math.max(160,(app.clientWidth||window.innerWidth-32))}
+function curScale(){return sc}
+function setScale(s){const mx=Math.min(1.5*s0,avail()/W0*1.0);sc=Math.max(0.4*s0,Math.min(Math.max(mx,s0),s));
+ frame.style.width=W0*sc+'px';frame.style.height=H0*sc+'px';stage.style.transform='scale('+sc+')';$('#zPct').textContent=Math.round(sc/s0*100)+'%';$('#winsz').textContent=Math.round(W0*sc)+' × '+Math.round(H0*sc)+' px'}
+function fit(){s0=Math.min(1,avail()/W0);return s0}
+window.addEventListener('resize',()=>{const r=sc/s0;fit();setScale(s0*r)});
+fit();setScale(s0);
+$$('.rh').forEach(h=>{let d=null;h.addEventListener('pointerdown',e=>{h.setPointerCapture(e.pointerId);d={x:e.clientX,y:e.clientY,s:sc};e.preventDefault()});
+ h.addEventListener('pointermove',e=>{if(!d)return;const k=h.dataset.h,dx=e.clientX-d.x,dy=e.clientY-d.y;let nw=W0*d.s;
+  const ex=k.includes('e')?dx*2:k.includes('w')?-dx*2:0,ey=k.includes('s')?dy*2:k.includes('n')?-dy*2:0;
+  const rx=ex/(W0*d.s),ry=ey/(H0*d.s);setScale(d.s*(1+(Math.abs(rx)>Math.abs(ry)?rx:ry)))});
+ h.addEventListener('pointerup',()=>d=null);h.addEventListener('pointercancel',()=>d=null)});
+$('#zMinus').onclick=()=>setScale(sc*.9);$('#zPlus').onclick=()=>setScale(sc*1.1);$('#zPct').onclick=()=>setScale(s0);
+$$('.cheek').forEach(c=>c.addEventListener('dblclick',()=>{setScale(s0);toast('Window reset to 100%')}));
+/* ============ Keyboard ============ */
+document.addEventListener('keydown',e=>{if(!modal.hidden){if(e.key==='Escape')closeModal();return}const t=e.target;if(t&&(t.tagName==='INPUT'||t.tagName==='SELECT'||t.tagName==='TEXTAREA'))return;
+ if(e.key===' '&&t.tagName!=='BUTTON'){e.preventDefault();playing?stopAudio():startAudio()}
+ else if(e.key==='b'||e.key==='B'){st.bypass^=1;syncUI()}
+ else if(e.key==='v'||e.key==='V'){view=(view+1)%3;syncUI()}
+ else if(e.key==='k'||e.key==='K'){st.knee^=1;syncUI()}
+ else if(e.key==='t'||e.key==='T'){st.timing^=1;syncUI()}});
+syncUI();
+runSynth(1.5);
+requestAnimationFrame(frameLoop);
+window.__pp={st,eng,syncUI,openBrowser,setScale,FACTORY,loadPreset,runSynth,draw,get sc(){return sc},get view(){return view},setView(v){view=v;syncUI()}};
+})();
+
+</script>
