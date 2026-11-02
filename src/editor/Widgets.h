@@ -131,7 +131,7 @@ public:
         for (int i = 0; i < ticks.size() && i <= 10; ++i)
         {
             const float a = degreesToRadians (-135.0f + (float) i * 27.0f);
-            g.setFont (theme::font (theme::FontKind::semi, ticks[i].length() > 3 ? 8.5f : 10.0f));
+            g.setFont (theme::font (ticks[i].containsNonWhitespaceChars() && ticks[i].toWideCharPointer()[0] > 127 ? theme::FontKind::mono : theme::FontKind::semi, ticks[i].length() > 3 ? 8.5f : 10.0f));
             g.drawSingleLineText (ticks[i], roundToInt (cx + std::sin (a) * 57.0f), roundToInt (cy - std::cos (a) * 57.0f + 3.5f),
                                   Justification::horizontallyCentred);
         }

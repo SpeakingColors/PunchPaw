@@ -15,6 +15,7 @@ public:
     void resetSize();
     void openDialogForTesting (const juce::String& name); // used by tools/snapshot.cpp
     void setViewForTesting (int v);
+    void forceRunForTesting();
 
     static constexpr int kW = 1200, kH = 570;
 

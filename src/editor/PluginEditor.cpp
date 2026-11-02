@@ -197,6 +197,8 @@ public:
         else if (n == "manual") { setReal (ids::timing, 1.0f); syncControls(); }
     }
     void setViewForTesting (int v) { setView (v); }
+    void forceRunForTesting() { forceRun = true; }
+    bool forceRun = false;
 
     // ---- DialogHost --------------------------------------------------------------------------
     PunchPawProcessor& processor() override { return proc; }
@@ -382,7 +384,7 @@ public:
 private:
     void timerCallback() override
     {
-        if (! isShowing()) return;                 // pause drawing when the window is hidden; audio is unaffected
+        if (! forceRun && ! isShowing()) return;                 // pause drawing when the window is hidden; audio is unaffected
         refreshLive (1.0f / (float) (ctx.power ? 16 : 60));
         dial.repaint(); curve.repaint(); shape.repaint(); hist.repaint();
         meterIn.update (live.inPk); meterOut.update (live.outPk);
@@ -578,7 +580,7 @@ private:
             k->tip = c.tip;
             auto* v = new KnobValue (ctx);
             values.add (v); addAndMakeVisible (v);
-            v->setBounds (roundToInt (c.value.x), roundToInt (c.value.y), roundToInt (c.value.w), roundToInt (c.value.h));
+            { const int pad = (i == 4) ? 0 : 40; v->setBounds (roundToInt (c.value.x) - pad, roundToInt (c.value.y), roundToInt (c.value.w) + 2 * pad, roundToInt (c.value.h)); }
             v->tip = c.tip;
             if (i == 4)
             {
@@ -601,7 +603,7 @@ private:
             k->tip = c.tip;
             auto* v = new KnobValue (ctx);
             smallValues.add (v); addChildComponent (v);
-            v->setBounds (roundToInt (c.val.x), roundToInt (c.val.y), roundToInt (c.val.w), roundToInt (c.val.h));
+            v->setBounds (roundToInt (c.val.x) - 30, roundToInt (c.val.y), roundToInt (c.val.w) + 60, roundToInt (c.val.h));
             v->tip = c.tip;
             for (int e = 0; e < 2; ++e) manualOnly.add (addHit (*this, e == 0 ? c.end0 : c.end1, c.tip));
             for (int e = 0; e < 2; ++e) manualOnly.getLast()->setVisible (false);
@@ -707,3 +709,4 @@ void PunchPawEditor::resized()
 void PunchPawEditor::resetSize() { setSize (kW, kH); }
 void PunchPawEditor::openDialogForTesting (const juce::String& n) { face->openForTesting (n); }
 void PunchPawEditor::setViewForTesting (int v) { face->setViewForTesting (v); }
+void PunchPawEditor::forceRunForTesting() { face->forceRunForTesting(); }

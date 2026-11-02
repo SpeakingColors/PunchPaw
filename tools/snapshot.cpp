@@ -93,6 +93,7 @@ int main (int argc, char** argv)
     { auto* t = proc.apvts.getParameter (ids::thr); t->setValueNotifyingHost (t->convertTo0to1 (-22.0f)); }
     if (argc > 3) proc.setSetting (setting::look, juce::String (argv[3]));
     std::unique_ptr<juce::AudioProcessorEditor> ed (proc.createEditor());
+    if (auto* pe0 = dynamic_cast<PunchPawEditor*> (ed.get())) pe0->forceRunForTesting();
     const double sc = argc > 2 ? juce::String (argv[2]).getDoubleValue() : 1.0;
     ed->setSize (juce::roundToInt (1200 * sc), juce::roundToInt (570 * sc));
     const juce::String dialog = argc > 4 ? juce::String (argv[4]) : juce::String ("none");
