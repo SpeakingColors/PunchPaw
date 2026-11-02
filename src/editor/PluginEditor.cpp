@@ -573,7 +573,7 @@ private:
         {
             const auto& c = layout::cells[i];
             StringArray ticks;
-            for (int k = 0; k < c.nticks; ++k) ticks.add (c.ticks[k]);
+            for (int k = 0; k < c.nticks; ++k) ticks.add (String::fromUTF8 (c.ticks[k]));
             auto* k = new KnobView (*proc.apvts.getParameter (pid[i]), ticks, false);
             knobs.add (k); addAndMakeVisible (k);
             k->setBounds (roundToInt (c.knob.x), roundToInt (c.knob.y), 150, 150);
