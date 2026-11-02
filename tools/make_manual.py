@@ -17,7 +17,7 @@ L = json.load(open(os.path.join(ROOT, 'docs/mockup/layout.json')))
 CUT = 70
 esc = lambda s: s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 PURPLE, PINK, TEAL, INK = colors.HexColor("#4F009A"), colors.HexColor("#C2185B"), colors.HexColor("#007A66"), colors.HexColor("#222222")
-h1 = ParagraphStyle("h1", fontName="Helvetica-Bold", fontSize=22, spaceAfter=4, textColor=PURPLE)
+h1 = ParagraphStyle("h1", fontName="Helvetica-Bold", fontSize=22, leading=28, spaceAfter=4, textColor=PURPLE)
 sub = ParagraphStyle("sub", fontName="Helvetica", fontSize=10, textColor=colors.HexColor("#777777"), spaceAfter=14)
 h2 = ParagraphStyle("h2", fontName="Helvetica-Bold", fontSize=14, spaceBefore=12, spaceAfter=4, textColor=PURPLE)
 body = ParagraphStyle("b", fontName="Helvetica", fontSize=10.5, leading=14.5, spaceAfter=6)
