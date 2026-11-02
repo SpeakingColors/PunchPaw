@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PUNCHPAW stateVersion="1" look="B" preset="Start Here">
+  <PARAM id="thr" value="-18.0"/>
+  <PARAM id="ratio" value="6.0"/>
+  <PARAM id="out" value="3.0"/>
+  <PARAM id="hp" value="4.0"/>
+  <PARAM id="mix" value="70.0"/>
+  <PARAM id="ceil" value="8.0"/>
+  <PARAM id="knee" value="1.0"/>
+  <PARAM id="timing" value="1.0"/>
+  <PARAM id="atk" value="5.0"/>
+  <PARAM id="rel" value="200.0"/>
+  <PARAM id="bypass" value="0.0"/>
+</PUNCHPAW>

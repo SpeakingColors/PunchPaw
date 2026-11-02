@@ -1,0 +1,2532 @@
+{
+ "cheekL": [
+  0,
+  0,
+  52,
+  640
+ ],
+ "cheekR": [
+  1148,
+  0,
+  52,
+  640
+ ],
+ "main": [
+  52,
+  0,
+  1096,
+  640
+ ],
+ "hdr": [
+  52,
+  0,
+  1096,
+  46
+ ],
+ "sub": [
+  52,
+  46,
+  1096,
+  22
+ ],
+ "body": [
+  52,
+  68,
+  1096,
+  546
+ ],
+ "left": [
+  52,
+  68,
+  1004,
+  546
+ ],
+ "top": [
+  52,
+  68,
+  1004,
+  152
+ ],
+ "disp": [
+  52,
+  220,
+  1004,
+  134
+ ],
+ "knobs": [
+  52,
+  354,
+  1004,
+  190
+ ],
+ "rig": [
+  52,
+  544,
+  1004,
+  68
+ ],
+ "meters": [
+  1056,
+  68,
+  92,
+  546
+ ],
+ "foot": [
+  52,
+  614,
+  1096,
+  26
+ ],
+ "logo": [
+  64,
+  5.5,
+  34,
+  34
+ ],
+ "name": [
+  106,
+  9.5,
+  101.92,
+  26
+ ],
+ "s87": [
+  215.92,
+  15.5,
+  59.78,
+  14
+ ],
+ "pPrev": [
+  382.88,
+  10.09,
+  35.34,
+  24.8
+ ],
+ "pName": [
+  422.22,
+  8.91,
+  200,
+  27.19
+ ],
+ "pNext": [
+  626.22,
+  10.09,
+  35.34,
+  24.8
+ ],
+ "pSave": [
+  665.56,
+  10.09,
+  47.08,
+  24.8
+ ],
+ "bBypass": [
+  819.83,
+  10.09,
+  59.36,
+  24.8
+ ],
+ "bGuide": [
+  889.19,
+  10.09,
+  51.8,
+  24.8
+ ],
+ "bSettings": [
+  950.98,
+  10.09,
+  65.81,
+  24.8
+ ],
+ "bAbout": [
+  1026.8,
+  10.09,
+  109.2,
+  24.8
+ ],
+ "cvCurve": [
+  62,
+  244,
+  272,
+  102
+ ],
+ "cvShape": [
+  340.33,
+  244,
+  432,
+  102
+ ],
+ "cvHist": [
+  777.66,
+  244,
+  270,
+  102
+ ],
+ "cvIn": [
+  1062.5,
+  92,
+  38,
+  300
+ ],
+ "cvOut": [
+  1104.5,
+  92,
+  38,
+  300
+ ],
+ "cvDial": [
+  66,
+  90,
+  322,
+  126
+ ],
+ "pkIn": [
+  1069.8,
+  396,
+  26.41,
+  14
+ ],
+ "pkOut": [
+  1102.2,
+  396,
+  33,
+  14
+ ],
+ "winsz": [
+  1066.73,
+  620.5,
+  69.27,
+  14
+ ],
+ "footL": [
+  64,
+  620.5,
+  209.81,
+  14
+ ],
+ "tips": {
+  "sub": "PunchPaw is a punch compressor for drums and bass: kick, snare, drum bus and parallel crush. It is not a mastering tool. It is fast, hard-knee and adds colour, so for a whole song use a gentle bus or mastering compressor instead.",
+  "cheek": "Double-click the wood to reset the window to 100%.",
+  "dial": "Analogue-style level meter. Choose what it shows with the Show buttons: input level, output level, or how much the unit turns the sound down. The colour band marks safe (blue), warning (purple) and clip (pink).",
+  "curve": "Level in (across) against level out (up), both in dB. The curve follows Threshold, Ratio, Knee, Output and Ceiling. The white dot is the live signal.",
+  "shape": "The loudness shape of each hit in dB. Grey is what goes in, the coloured fill is what comes out, pink bars from the top show how much was turned down. Watch the front of the kick to see the punch.",
+  "hist": "How much the unit turned the signal down, in dB, over the last six seconds.",
+  "cvIn": "Input peak level in dB. Blue is safe, purple is the warning zone, pink is clipping. The top cap stays pink after a clip; click to clear it.",
+  "cvOut": "Output peak level in dB, after Output, Mix and Ceiling. The top cap stays pink after a clip; click to clear it.",
+  "pkIn": "Highest recent input peak, in dB.",
+  "pkOut": "Highest recent output peak, in dB.",
+  "pPrev": "Previous preset.",
+  "pName": "Open the preset browser. Double-click to rename your own presets.",
+  "pNext": "Next preset.",
+  "pSave": "Save these settings as your own preset. Asks before overwriting.",
+  "bBypass": "Bypass: hear the dry signal to compare with the processed sound (B). The meters keep moving.",
+  "bGuide": "Short guide and keyboard shortcuts.",
+  "bSettings": "Info bubbles, power saving, colour look.",
+  "bAbout": "About PunchPaw, support and where your files live."
+ },
+ "subParts": [
+  {
+   "t": "Punchy hard-knee compressor with true RMS detection.",
+   "tip": "",
+   "aria": "",
+   "c": "stxt",
+   "r": [
+    64,
+    48,
+    285.42,
+    17
+   ],
+   "color": "",
+   "fs": "14px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.3px",
+   "tt": "none",
+   "tc": "rgb(244, 245, 247)"
+  },
+  {
+   "t": "Best for",
+   "tip": "",
+   "aria": "",
+   "c": "bf",
+   "r": [
+    361.42,
+    50,
+    47.88,
+    13
+   ],
+   "color": "",
+   "fs": "11px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "1.5px",
+   "tt": "uppercase",
+   "tc": "rgb(169, 173, 184)"
+  },
+  {
+   "t": "Drums",
+   "tip": "",
+   "aria": "",
+   "c": "tg",
+   "r": [
+    415.3,
+    47.5,
+    47.5,
+    18
+   ],
+   "color": "",
+   "fs": "12px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.5px",
+   "tt": "none",
+   "tc": "rgb(232, 233, 238)"
+  },
+  {
+   "t": "Bass",
+   "tip": "",
+   "aria": "",
+   "c": "tg",
+   "r": [
+    468.8,
+    47.5,
+    39.64,
+    18
+   ],
+   "color": "",
+   "fs": "12px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.5px",
+   "tt": "none",
+   "tc": "rgb(232, 233, 238)"
+  },
+  {
+   "t": "Drum bus",
+   "tip": "",
+   "aria": "",
+   "c": "tg",
+   "r": [
+    514.44,
+    47.5,
+    61.75,
+    18
+   ],
+   "color": "",
+   "fs": "12px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.5px",
+   "tt": "none",
+   "tc": "rgb(232, 233, 238)"
+  },
+  {
+   "t": "Parallel crush",
+   "tip": "",
+   "aria": "",
+   "c": "tg",
+   "r": [
+    582.19,
+    47.5,
+    82.13,
+    18
+   ],
+   "color": "",
+   "fs": "12px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.5px",
+   "tt": "none",
+   "tc": "rgb(232, 233, 238)"
+  },
+  {
+   "t": "Not for mastering",
+   "tip": "",
+   "aria": "",
+   "c": "tg no",
+   "r": [
+    676.31,
+    47.5,
+    100.25,
+    18
+   ],
+   "color": "",
+   "fs": "12px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.5px",
+   "tt": "none",
+   "tc": "rgb(255, 123, 177)"
+  }
+ ],
+ "caps": [
+  {
+   "t": "Transfer curve",
+   "r": [
+    62,
+    228,
+    270.33,
+    14
+   ],
+   "parts": []
+  },
+  {
+   "t": "Punch shape, last 1.2 s: in out gain reduction",
+   "r": [
+    340.33,
+    228,
+    429.33,
+    14
+   ],
+   "parts": [
+    {
+     "t": "in",
+     "tip": "",
+     "aria": "",
+     "c": "k-in",
+     "r": [
+      485.92,
+      228,
+      11.66,
+      14
+     ],
+     "color": "",
+     "fs": "12px",
+     "ff": "ui",
+     "fw": "400",
+     "fi": "normal",
+     "ls": "1.5px",
+     "tt": "uppercase",
+     "tc": "rgb(169, 173, 184)"
+    },
+    {
+     "t": "out",
+     "tip": "",
+     "aria": "",
+     "c": "k-out",
+     "r": [
+      501.48,
+      228,
+      21.05,
+      14
+     ],
+     "color": "",
+     "fs": "12px",
+     "ff": "ui",
+     "fw": "400",
+     "fi": "normal",
+     "ls": "1.5px",
+     "tt": "uppercase",
+     "tc": "rgb(2, 235, 186)"
+    },
+    {
+     "t": "gain reduction",
+     "tip": "",
+     "aria": "",
+     "c": "k-gr",
+     "r": [
+      526.44,
+      228,
+      89.5,
+      14
+     ],
+     "color": "",
+     "fs": "12px",
+     "ff": "ui",
+     "fw": "400",
+     "fi": "normal",
+     "ls": "1.5px",
+     "tt": "uppercase",
+     "tc": "rgb(255, 123, 177)"
+    }
+   ]
+  },
+  {
+   "t": "Gain reduction, last 6 s",
+   "r": [
+    777.66,
+    228,
+    268.34,
+    14
+   ],
+   "parts": []
+  }
+ ],
+ "mcap": [
+  {
+   "t": "In",
+   "tip": "",
+   "aria": "",
+   "c": "",
+   "r": [
+    1062.64,
+    76,
+    11.66,
+    14
+   ],
+   "color": "",
+   "fs": "12px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "1.5px",
+   "tt": "uppercase",
+   "tc": "rgb(232, 233, 238)"
+  },
+  {
+   "t": "Out",
+   "tip": "",
+   "aria": "",
+   "c": "",
+   "r": [
+    1100.3,
+    76,
+    21.05,
+    14
+   ],
+   "color": "",
+   "fs": "12px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "1.5px",
+   "tt": "uppercase",
+   "tc": "rgb(232, 233, 238)"
+  }
+ ],
+ "vdiv": {
+  "t": "Added by Studio 87",
+  "tip": "The three knobs to the right are our additions. They are not part of the classic unit.",
+  "aria": "",
+  "c": "vdiv",
+  "r": [
+   545.98,
+   370,
+   16,
+   150
+  ],
+  "color": "",
+  "fs": "10px",
+  "ff": "ui",
+  "fw": "400",
+  "fi": "normal",
+  "ls": "1.5px",
+  "tt": "uppercase",
+  "tc": "rgb(169, 173, 184)"
+ },
+ "kcells": [
+  {
+   "lab": {
+    "t": "Threshold",
+    "tip": "",
+    "aria": "",
+    "c": "lab",
+    "r": [
+     96.03,
+     360,
+     89.34,
+     18
+    ],
+    "color": "",
+    "fs": "15px",
+    "ff": "ui",
+    "fw": "700",
+    "fi": "normal",
+    "ls": "3px",
+    "tt": "uppercase",
+    "tc": "rgb(232, 233, 238)"
+   },
+   "knob": {
+    "t": "-40-36-32-28-24-20-16-12-8-40",
+    "tip": "The level where the unit starts turning the sound down. Lower it to catch more of the kick. Scale is -40 to 0 dBFS.",
+    "aria": "Threshold",
+    "c": "knob",
+    "r": [
+     65.7,
+     378,
+     150,
+     150
+    ],
+    "color": "",
+    "fs": "16px",
+    "ff": "ui",
+    "fw": "400",
+    "fi": "normal",
+    "ls": "normal",
+    "tt": "none",
+    "tc": "rgb(244, 245, 247)"
+   },
+   "val": [
+    104.69,
+    522,
+    72.03,
+    16
+   ]
+  },
+  {
+   "lab": {
+    "t": "Ratio",
+    "tip": "",
+    "aria": "",
+    "c": "lab",
+    "r": [
+     279.09,
+     360,
+     46.06,
+     18
+    ],
+    "color": "",
+    "fs": "15px",
+    "ff": "ui",
+    "fw": "700",
+    "fi": "normal",
+    "ls": "3px",
+    "tt": "uppercase",
+    "tc": "rgb(232, 233, 238)"
+   },
+   "knob": {
+    "t": "11.523461020\u221e-2-1",
+    "tip": "How hard the unit turns down what goes over the threshold. 1:1 does nothing, 4:1 is firm, infinity is a hard limit. Past infinity the ratio goes negative: the louder the input, the quieter the output (a ducking effect).",
+    "aria": "Ratio",
+    "c": "knob",
+    "r": [
+     227.13,
+     378,
+     150,
+     150
+    ],
+    "color": "",
+    "fs": "16px",
+    "ff": "ui",
+    "fw": "400",
+    "fi": "normal",
+    "ls": "normal",
+    "tt": "none",
+    "tc": "rgb(244, 245, 247)"
+   },
+   "val": [
+    284.11,
+    522,
+    36.02,
+    16
+   ]
+  },
+  {
+   "lab": {
+    "t": "Output",
+    "tip": "",
+    "aria": "",
+    "c": "lab",
+    "r": [
+     433.31,
+     360,
+     60.48,
+     18
+    ],
+    "color": "",
+    "fs": "15px",
+    "ff": "ui",
+    "fw": "700",
+    "fi": "normal",
+    "ls": "3px",
+    "tt": "uppercase",
+    "tc": "rgb(232, 233, 238)"
+   },
+   "knob": {
+    "t": "-20-16-12-8-40+4+8+12+16+20",
+    "tip": "Level after the unit, to make up for the loudness it took away. 5 is 0 dB. Range -20 to +20 dB.",
+    "aria": "Output",
+    "c": "knob",
+    "r": [
+     388.56,
+     378,
+     150,
+     150
+    ],
+    "color": "",
+    "fs": "16px",
+    "ff": "ui",
+    "fw": "400",
+    "fi": "normal",
+    "ls": "normal",
+    "tt": "none",
+    "tc": "rgb(244, 245, 247)"
+   },
+   "val": [
+    438.34,
+    522,
+    50.42,
+    16
+   ]
+  },
+  {
+   "lab": {
+    "t": "SC High-pass",
+    "tip": "",
+    "aria": "",
+    "c": "lab",
+    "r": [
+     589.88,
+     360,
+     109.09,
+     18
+    ],
+    "color": "",
+    "fs": "15px",
+    "ff": "ui",
+    "fw": "700",
+    "fi": "normal",
+    "ls": "3px",
+    "tt": "uppercase",
+    "tc": "rgb(232, 233, 238)"
+   },
+   "knob": {
+    "t": "Off2030406080100130170220300",
+    "tip": "Our addition. Sidechain high-pass: the unit stops listening to low rumble below this frequency, so the sub does not make it clamp down and the punch comes through. It only changes what the unit hears, not what you hear. Off to 300 Hz.",
+    "aria": "SC High-pass",
+    "c": "knob",
+    "r": [
+     569.42,
+     378,
+     150,
+     150
+    ],
+    "color": "",
+    "fs": "16px",
+    "ff": "ui",
+    "fw": "400",
+    "fi": "normal",
+    "ls": "normal",
+    "tt": "none",
+    "tc": "rgb(244, 245, 247)"
+   },
+   "val": [
+    633.61,
+    522,
+    21.61,
+    16
+   ]
+  },
+  {
+   "lab": {
+    "t": "Mix",
+    "tip": "",
+    "aria": "",
+    "c": "lab",
+    "r": [
+     791.94,
+     360,
+     27.8,
+     18
+    ],
+    "color": "",
+    "fs": "15px",
+    "ff": "ui",
+    "fw": "700",
+    "fi": "normal",
+    "ls": "3px",
+    "tt": "uppercase",
+    "tc": "rgb(232, 233, 238)"
+   },
+   "knob": {
+    "t": "",
+    "tip": "Our addition. Blend of the dry signal and the processed signal for parallel compression. Dry on the left, Comp (all processed) on the right.",
+    "aria": "Mix",
+    "c": "knob",
+    "r": [
+     730.84,
+     378,
+     150,
+     150
+    ],
+    "color": "",
+    "fs": "16px",
+    "ff": "ui",
+    "fw": "400",
+    "fi": "normal",
+    "ls": "normal",
+    "tt": "none",
+    "tc": "rgb(244, 245, 247)"
+   },
+   "val": [
+    730.84,
+    522,
+    150,
+    16
+   ]
+  },
+  {
+   "lab": {
+    "t": "Ceiling",
+    "tip": "",
+    "aria": "",
+    "c": "lab",
+    "r": [
+     936,
+     360,
+     62.55,
+     18
+    ],
+    "color": "",
+    "fs": "15px",
+    "ff": "ui",
+    "fw": "700",
+    "fi": "normal",
+    "ls": "3px",
+    "tt": "uppercase",
+    "tc": "rgb(232, 233, 238)"
+   },
+   "knob": {
+    "t": "-12-10-9-8-7-6-5-4-3-1Off",
+    "tip": "Our addition. A soft clipper at the very end that stops peaks going above this level. Great for catching the last spikes of a kick. Off is fully clean. Range -12 to -1 dBFS.",
+    "aria": "Ceiling",
+    "c": "knob",
+    "r": [
+     892.28,
+     378,
+     150,
+     150
+    ],
+    "color": "",
+    "fs": "16px",
+    "ff": "ui",
+    "fw": "400",
+    "fi": "normal",
+    "ls": "normal",
+    "tt": "none",
+    "tc": "rgb(244, 245, 247)"
+   },
+   "val": [
+    956.47,
+    522,
+    21.61,
+    16
+   ]
+  }
+ ],
+ "topKids": [
+  {
+   "t": "Level meter (dB)",
+   "tip": "",
+   "aria": "",
+   "c": "lbl",
+   "r": [
+    66,
+    74,
+    106.98,
+    14
+   ],
+   "color": "",
+   "fs": "12px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "2px",
+   "tt": "uppercase",
+   "tc": "rgb(232, 233, 238)",
+   "cls": "lbl"
+  },
+  {
+   "t": "",
+   "tip": "Analogue-style level meter. Choose what it shows with the Show buttons: input level, output level, or how much the unit turns the sound down. The colour band marks safe (blue), warning (purple) and clip (pink).",
+   "aria": "",
+   "c": "",
+   "r": [
+    66,
+    90,
+    322,
+    126
+   ],
+   "color": "",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(244, 245, 247)",
+   "cls": ""
+  },
+  {
+   "t": "Show",
+   "tip": "",
+   "aria": "",
+   "c": "lbl",
+   "r": [
+    404,
+    74,
+    32.09,
+    14
+   ],
+   "color": "",
+   "fs": "12px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "2px",
+   "tt": "uppercase",
+   "tc": "rgb(232, 233, 238)",
+   "cls": "lbl"
+  },
+  {
+   "t": "",
+   "tip": "",
+   "aria": "",
+   "c": "led on",
+   "r": [
+    406,
+    106,
+    12,
+    12
+   ],
+   "color": "var(--g)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(2, 235, 186)",
+   "cls": "led on"
+  },
+  {
+   "t": "In",
+   "tip": "",
+   "aria": "",
+   "c": "ltxt",
+   "r": [
+    424,
+    104,
+    9.48,
+    16
+   ],
+   "color": "",
+   "fs": "13px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.5px",
+   "tt": "none",
+   "tc": "rgb(244, 245, 247)",
+   "cls": "ltxt"
+  },
+  {
+   "t": "",
+   "tip": "Meter shows the input level (before the unit).",
+   "aria": "In",
+   "c": "led-hit",
+   "r": [
+    404,
+    97,
+    56,
+    30
+   ],
+   "color": "",
+   "fs": "13.3333px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(255, 255, 255)",
+   "cls": "led-hit"
+  },
+  {
+   "t": "",
+   "tip": "",
+   "aria": "",
+   "c": "led",
+   "r": [
+    406,
+    134,
+    12,
+    12
+   ],
+   "color": "var(--g)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(2, 235, 186)",
+   "cls": "led"
+  },
+  {
+   "t": "Out",
+   "tip": "",
+   "aria": "",
+   "c": "ltxt",
+   "r": [
+    424,
+    132,
+    16.7,
+    16
+   ],
+   "color": "",
+   "fs": "13px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.5px",
+   "tt": "none",
+   "tc": "rgb(244, 245, 247)",
+   "cls": "ltxt"
+  },
+  {
+   "t": "",
+   "tip": "Meter shows the output level (after Output, Mix and Ceiling).",
+   "aria": "Out",
+   "c": "led-hit",
+   "r": [
+    404,
+    125,
+    56,
+    30
+   ],
+   "color": "",
+   "fs": "13.3333px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(255, 255, 255)",
+   "cls": "led-hit"
+  },
+  {
+   "t": "",
+   "tip": "",
+   "aria": "",
+   "c": "led",
+   "r": [
+    406,
+    162,
+    12,
+    12
+   ],
+   "color": "var(--g)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(2, 235, 186)",
+   "cls": "led"
+  },
+  {
+   "t": "GR",
+   "tip": "",
+   "aria": "",
+   "c": "ltxt",
+   "r": [
+    424,
+    160,
+    12.84,
+    16
+   ],
+   "color": "",
+   "fs": "13px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.5px",
+   "tt": "none",
+   "tc": "rgb(244, 245, 247)",
+   "cls": "ltxt"
+  },
+  {
+   "t": "",
+   "tip": "Meter shows gain reduction: how many dB the unit is turning the sound down.",
+   "aria": "GR",
+   "c": "led-hit",
+   "r": [
+    404,
+    153,
+    56,
+    30
+   ],
+   "color": "",
+   "fs": "13.3333px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(255, 255, 255)",
+   "cls": "led-hit"
+  },
+  {
+   "t": "Gain reduction (dB)",
+   "tip": "",
+   "aria": "",
+   "c": "lbl",
+   "r": [
+    504,
+    74,
+    126.02,
+    14
+   ],
+   "color": "",
+   "fs": "12px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "2px",
+   "tt": "uppercase",
+   "tc": "rgb(232, 233, 238)",
+   "cls": "lbl"
+  },
+  {
+   "t": "",
+   "tip": "Gain reduction lamp: lights when the unit turns the sound down by 1 dB or more.",
+   "aria": "",
+   "c": "led on",
+   "r": [
+    514,
+    110,
+    12,
+    12
+   ],
+   "color": "var(--g)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(2, 235, 186)",
+   "cls": "led on"
+  },
+  {
+   "t": "1",
+   "tip": "",
+   "aria": "",
+   "c": "lnum",
+   "r": [
+    517,
+    95.5,
+    6,
+    13
+   ],
+   "color": "",
+   "fs": "10px",
+   "ff": "mono",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(169, 173, 184)",
+   "cls": "lnum"
+  },
+  {
+   "t": "",
+   "tip": "Gain reduction lamp: lights when the unit turns the sound down by 2 dB or more.",
+   "aria": "",
+   "c": "led on",
+   "r": [
+    539.5,
+    110,
+    12,
+    12
+   ],
+   "color": "var(--g)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(2, 235, 186)",
+   "cls": "led on"
+  },
+  {
+   "t": "2",
+   "tip": "",
+   "aria": "",
+   "c": "lnum",
+   "r": [
+    542.5,
+    95.5,
+    6,
+    13
+   ],
+   "color": "",
+   "fs": "10px",
+   "ff": "mono",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(169, 173, 184)",
+   "cls": "lnum"
+  },
+  {
+   "t": "",
+   "tip": "Gain reduction lamp: lights when the unit turns the sound down by 3 dB or more.",
+   "aria": "",
+   "c": "led on",
+   "r": [
+    565,
+    110,
+    12,
+    12
+   ],
+   "color": "var(--g)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(2, 235, 186)",
+   "cls": "led on"
+  },
+  {
+   "t": "3",
+   "tip": "",
+   "aria": "",
+   "c": "lnum",
+   "r": [
+    568,
+    95.5,
+    6,
+    13
+   ],
+   "color": "",
+   "fs": "10px",
+   "ff": "mono",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(169, 173, 184)",
+   "cls": "lnum"
+  },
+  {
+   "t": "",
+   "tip": "Gain reduction lamp: lights when the unit turns the sound down by 4 dB or more.",
+   "aria": "",
+   "c": "led on",
+   "r": [
+    590.5,
+    110,
+    12,
+    12
+   ],
+   "color": "var(--y)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(255, 209, 0)",
+   "cls": "led on"
+  },
+  {
+   "t": "4",
+   "tip": "",
+   "aria": "",
+   "c": "lnum",
+   "r": [
+    593.5,
+    95.5,
+    6,
+    13
+   ],
+   "color": "",
+   "fs": "10px",
+   "ff": "mono",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(169, 173, 184)",
+   "cls": "lnum"
+  },
+  {
+   "t": "",
+   "tip": "Gain reduction lamp: lights when the unit turns the sound down by 6 dB or more.",
+   "aria": "",
+   "c": "led on",
+   "r": [
+    616,
+    110,
+    12,
+    12
+   ],
+   "color": "var(--y)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(255, 209, 0)",
+   "cls": "led on"
+  },
+  {
+   "t": "6",
+   "tip": "",
+   "aria": "",
+   "c": "lnum",
+   "r": [
+    619,
+    95.5,
+    6,
+    13
+   ],
+   "color": "",
+   "fs": "10px",
+   "ff": "mono",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(169, 173, 184)",
+   "cls": "lnum"
+  },
+  {
+   "t": "",
+   "tip": "Gain reduction lamp: lights when the unit turns the sound down by 8 dB or more.",
+   "aria": "",
+   "c": "led on",
+   "r": [
+    641.5,
+    110,
+    12,
+    12
+   ],
+   "color": "var(--y)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(255, 209, 0)",
+   "cls": "led on"
+  },
+  {
+   "t": "8",
+   "tip": "",
+   "aria": "",
+   "c": "lnum",
+   "r": [
+    644.5,
+    95.5,
+    6,
+    13
+   ],
+   "color": "",
+   "fs": "10px",
+   "ff": "mono",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(169, 173, 184)",
+   "cls": "lnum"
+  },
+  {
+   "t": "",
+   "tip": "Gain reduction lamp: lights when the unit turns the sound down by 10 dB or more.",
+   "aria": "",
+   "c": "led on",
+   "r": [
+    667,
+    110,
+    12,
+    12
+   ],
+   "color": "var(--o)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(245, 127, 1)",
+   "cls": "led on"
+  },
+  {
+   "t": "10",
+   "tip": "",
+   "aria": "",
+   "c": "lnum",
+   "r": [
+    667,
+    95.5,
+    12,
+    13
+   ],
+   "color": "",
+   "fs": "10px",
+   "ff": "mono",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(169, 173, 184)",
+   "cls": "lnum"
+  },
+  {
+   "t": "",
+   "tip": "Gain reduction lamp: lights when the unit turns the sound down by 15 dB or more.",
+   "aria": "",
+   "c": "led",
+   "r": [
+    692.5,
+    110,
+    12,
+    12
+   ],
+   "color": "var(--o)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(245, 127, 1)",
+   "cls": "led"
+  },
+  {
+   "t": "15",
+   "tip": "",
+   "aria": "",
+   "c": "lnum",
+   "r": [
+    692.5,
+    95.5,
+    12,
+    13
+   ],
+   "color": "",
+   "fs": "10px",
+   "ff": "mono",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(169, 173, 184)",
+   "cls": "lnum"
+  },
+  {
+   "t": "",
+   "tip": "Gain reduction lamp: lights when the unit turns the sound down by 20 dB or more.",
+   "aria": "",
+   "c": "led",
+   "r": [
+    718,
+    110,
+    12,
+    12
+   ],
+   "color": "var(--r)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(255, 19, 131)",
+   "cls": "led"
+  },
+  {
+   "t": "20",
+   "tip": "",
+   "aria": "",
+   "c": "lnum",
+   "r": [
+    718,
+    95.5,
+    12,
+    13
+   ],
+   "color": "",
+   "fs": "10px",
+   "ff": "mono",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(169, 173, 184)",
+   "cls": "lnum"
+  },
+  {
+   "t": "",
+   "tip": "Gain reduction lamp: lights when the unit turns the sound down by 30 dB or more.",
+   "aria": "",
+   "c": "led",
+   "r": [
+    743.5,
+    110,
+    12,
+    12
+   ],
+   "color": "var(--r)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(255, 19, 131)",
+   "cls": "led"
+  },
+  {
+   "t": "30",
+   "tip": "",
+   "aria": "",
+   "c": "lnum",
+   "r": [
+    743.5,
+    95.5,
+    12,
+    13
+   ],
+   "color": "",
+   "fs": "10px",
+   "ff": "mono",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(169, 173, 184)",
+   "cls": "lnum"
+  },
+  {
+   "t": "",
+   "tip": "Gain reduction lamp: lights when the unit turns the sound down by 40 dB or more.",
+   "aria": "",
+   "c": "led",
+   "r": [
+    769,
+    110,
+    12,
+    12
+   ],
+   "color": "var(--r)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(255, 19, 131)",
+   "cls": "led"
+  },
+  {
+   "t": "40",
+   "tip": "",
+   "aria": "",
+   "c": "lnum",
+   "r": [
+    769,
+    95.5,
+    12,
+    13
+   ],
+   "color": "",
+   "fs": "10px",
+   "ff": "mono",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(169, 173, 184)",
+   "cls": "lnum"
+  },
+  {
+   "t": "",
+   "tip": "Gain reduction lamp: lights when the unit turns the sound down by 60 dB or more.",
+   "aria": "",
+   "c": "led",
+   "r": [
+    794.5,
+    110,
+    12,
+    12
+   ],
+   "color": "var(--r)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(255, 19, 131)",
+   "cls": "led"
+  },
+  {
+   "t": "60",
+   "tip": "",
+   "aria": "",
+   "c": "lnum",
+   "r": [
+    794.5,
+    95.5,
+    12,
+    13
+   ],
+   "color": "",
+   "fs": "10px",
+   "ff": "mono",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(169, 173, 184)",
+   "cls": "lnum"
+  },
+  {
+   "t": "Timing",
+   "tip": "",
+   "aria": "",
+   "c": "lbl",
+   "r": [
+    504,
+    132,
+    40.41,
+    14
+   ],
+   "color": "",
+   "fs": "12px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "2px",
+   "tt": "uppercase",
+   "tc": "rgb(232, 233, 238)",
+   "cls": "lbl"
+  },
+  {
+   "t": "",
+   "tip": "",
+   "aria": "",
+   "c": "led on",
+   "r": [
+    508,
+    154,
+    12,
+    12
+   ],
+   "color": "var(--g)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(2, 235, 186)",
+   "cls": "led on"
+  },
+  {
+   "t": "Auto",
+   "tip": "",
+   "aria": "",
+   "c": "ltxt",
+   "r": [
+    526,
+    152,
+    22.27,
+    16
+   ],
+   "color": "",
+   "fs": "13px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.5px",
+   "tt": "none",
+   "tc": "rgb(244, 245, 247)",
+   "cls": "ltxt"
+  },
+  {
+   "t": "",
+   "tip": "Auto timing (default, the classic behaviour). The unit decides attack and release by itself from the signal: fast signals get fast times, slow signals get slow times. No knobs needed.",
+   "aria": "Auto",
+   "c": "led-hit",
+   "r": [
+    506,
+    145,
+    70,
+    30
+   ],
+   "color": "",
+   "fs": "13.3333px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(255, 255, 255)",
+   "cls": "led-hit"
+  },
+  {
+   "t": "",
+   "tip": "",
+   "aria": "",
+   "c": "led",
+   "r": [
+    508,
+    182,
+    12,
+    12
+   ],
+   "color": "var(--y)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(255, 209, 0)",
+   "cls": "led"
+  },
+  {
+   "t": "Manual",
+   "tip": "",
+   "aria": "",
+   "c": "ltxt",
+   "r": [
+    526,
+    180,
+    34.66,
+    16
+   ],
+   "color": "",
+   "fs": "13px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.5px",
+   "tt": "none",
+   "tc": "rgb(244, 245, 247)",
+   "cls": "ltxt"
+  },
+  {
+   "t": "",
+   "tip": "Manual timing (our addition, not in the classic unit). Shows Attack and Release knobs so you set the times yourself. Press T to switch.",
+   "aria": "Manual",
+   "c": "led-hit",
+   "r": [
+    506,
+    173,
+    80,
+    30
+   ],
+   "color": "",
+   "fs": "13.3333px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(255, 255, 255)",
+   "cls": "led-hit"
+  },
+  {
+   "t": "Attack now 14.4 ms",
+   "tip": "Auto attack, live. It gets faster the harder the unit works: about 15 ms for 10 dB, 5 ms for 20 dB, 3 ms for 30 dB. Shows the value right now.",
+   "aria": "",
+   "c": "rdt",
+   "r": [
+    600,
+    134,
+    129.63,
+    16
+   ],
+   "color": "",
+   "fs": "12px",
+   "ff": "mono",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(169, 173, 184)",
+   "cls": "rdt"
+  },
+  {
+   "t": "Release 125 dB/s",
+   "tip": "Auto release: the gain comes back at a steady 125 dB per second, so a small dip recovers in a few milliseconds and a deep one takes longer.",
+   "aria": "",
+   "c": "rdt",
+   "r": [
+    600,
+    152,
+    115.22,
+    16
+   ],
+   "color": "",
+   "fs": "12px",
+   "ff": "mono",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(169, 173, 184)",
+   "cls": "rdt"
+  },
+  {
+   "t": "Program dependent: fast signals get fast times,",
+   "tip": "Auto timing. Attack and release are decided by the signal itself (program dependent). A hard hit that is turned down a lot gets a faster attack: about 15 ms at 10 dB, 5 ms at 20 dB, 3 ms at 30 dB. Release is a steady 125 dB per second, so small dips recover fast and deep ones take longer. Switch to Manual to set the times yourself.",
+   "aria": "",
+   "c": "note",
+   "r": [
+    600,
+    174,
+    205.53,
+    13
+   ],
+   "color": "",
+   "fs": "11px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.5px",
+   "tt": "none",
+   "tc": "rgb(169, 173, 184)",
+   "cls": "note"
+  },
+  {
+   "t": "slow signals get slow times. No knobs in Auto.",
+   "tip": "Auto timing. Attack and release are decided by the signal itself (program dependent). A hard hit that is turned down a lot gets a faster attack: about 15 ms at 10 dB, 5 ms at 20 dB, 3 ms at 30 dB. Release is a steady 125 dB per second, so small dips recover fast and deep ones take longer. Switch to Manual to set the times yourself.",
+   "aria": "",
+   "c": "note",
+   "r": [
+    600,
+    188,
+    197.44,
+    13
+   ],
+   "color": "",
+   "fs": "11px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.5px",
+   "tt": "none",
+   "tc": "rgb(169, 173, 184)",
+   "cls": "note"
+  },
+  {
+   "t": "Knee",
+   "tip": "",
+   "aria": "",
+   "c": "lbl",
+   "r": [
+    842,
+    74,
+    29.98,
+    14
+   ],
+   "color": "",
+   "fs": "12px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "2px",
+   "tt": "uppercase",
+   "tc": "rgb(232, 233, 238)",
+   "cls": "lbl"
+  },
+  {
+   "t": "",
+   "tip": "",
+   "aria": "",
+   "c": "led on",
+   "r": [
+    846,
+    106,
+    12,
+    12
+   ],
+   "color": "var(--y)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(255, 209, 0)",
+   "cls": "led on"
+  },
+  {
+   "t": "Hard",
+   "tip": "",
+   "aria": "",
+   "c": "ltxt",
+   "r": [
+    864,
+    104,
+    23.2,
+    16
+   ],
+   "color": "",
+   "fs": "13px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.5px",
+   "tt": "none",
+   "tc": "rgb(244, 245, 247)",
+   "cls": "ltxt"
+  },
+  {
+   "t": "",
+   "tip": "Hard knee: the classic snappy curve. Nothing happens below the threshold, full ratio above it.",
+   "aria": "Hard",
+   "c": "led-hit",
+   "r": [
+    844,
+    97,
+    64,
+    30
+   ],
+   "color": "",
+   "fs": "13.3333px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(255, 255, 255)",
+   "cls": "led-hit"
+  },
+  {
+   "t": "",
+   "tip": "",
+   "aria": "",
+   "c": "led",
+   "r": [
+    846,
+    134,
+    12,
+    12
+   ],
+   "color": "var(--g)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(2, 235, 186)",
+   "cls": "led"
+  },
+  {
+   "t": "Soft",
+   "tip": "",
+   "aria": "",
+   "c": "ltxt",
+   "r": [
+    864,
+    132,
+    20.34,
+    16
+   ],
+   "color": "",
+   "fs": "13px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.5px",
+   "tt": "none",
+   "tc": "rgb(244, 245, 247)",
+   "cls": "ltxt"
+  },
+  {
+   "t": "",
+   "tip": "Soft knee (our addition, not in the classic unit): eases into the ratio over 8 dB around the threshold. Gentler and less obvious.",
+   "aria": "Soft",
+   "c": "led-hit",
+   "r": [
+    844,
+    125,
+    64,
+    30
+   ],
+   "color": "",
+   "fs": "13.3333px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(255, 255, 255)",
+   "cls": "led-hit"
+  },
+  {
+   "t": "Soft is an added option",
+   "tip": "Soft knee is our addition. The classic unit has a hard knee only.",
+   "aria": "",
+   "c": "note",
+   "r": [
+    842,
+    166,
+    99.55,
+    13
+   ],
+   "color": "",
+   "fs": "11px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.5px",
+   "tt": "none",
+   "tc": "rgb(169, 173, 184)",
+   "cls": "note"
+  },
+  {
+   "t": "Threshold",
+   "tip": "",
+   "aria": "",
+   "c": "lbl",
+   "r": [
+    974,
+    74,
+    66.47,
+    14
+   ],
+   "color": "",
+   "fs": "12px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "2px",
+   "tt": "uppercase",
+   "tc": "rgb(232, 233, 238)",
+   "cls": "lbl"
+  },
+  {
+   "t": "",
+   "tip": "Indicator: the signal is well under the threshold. Nothing is being compressed.",
+   "aria": "",
+   "c": "led",
+   "r": [
+    976,
+    106,
+    12,
+    12
+   ],
+   "color": "var(--g)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(2, 235, 186)",
+   "cls": "led"
+  },
+  {
+   "t": "Under",
+   "tip": "",
+   "aria": "",
+   "c": "ltxt",
+   "r": [
+    994,
+    104,
+    29.3,
+    16
+   ],
+   "color": "",
+   "fs": "13px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.5px",
+   "tt": "none",
+   "tc": "rgb(244, 245, 247)",
+   "cls": "ltxt"
+  },
+  {
+   "t": "",
+   "tip": "Indicator: the signal is just under the threshold and about to be compressed.",
+   "aria": "",
+   "c": "led",
+   "r": [
+    976,
+    134,
+    12,
+    12
+   ],
+   "color": "var(--y)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(255, 209, 0)",
+   "cls": "led"
+  },
+  {
+   "t": "Near",
+   "tip": "",
+   "aria": "",
+   "c": "ltxt",
+   "r": [
+    994,
+    132,
+    23.36,
+    16
+   ],
+   "color": "",
+   "fs": "13px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.5px",
+   "tt": "none",
+   "tc": "rgb(244, 245, 247)",
+   "cls": "ltxt"
+  },
+  {
+   "t": "",
+   "tip": "Indicator: the signal is over the threshold and is being turned down.",
+   "aria": "",
+   "c": "led on",
+   "r": [
+    976,
+    162,
+    12,
+    12
+   ],
+   "color": "var(--r)",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(255, 19, 131)",
+   "cls": "led on"
+  },
+  {
+   "t": "Over",
+   "tip": "",
+   "aria": "",
+   "c": "ltxt",
+   "r": [
+    994,
+    160,
+    22.39,
+    16
+   ],
+   "color": "",
+   "fs": "13px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "0.5px",
+   "tt": "none",
+   "tc": "rgb(244, 245, 247)",
+   "cls": "ltxt"
+  },
+  {
+   "t": "Attack10.0 ms0.1 ms100 ms",
+   "tip": "",
+   "aria": "",
+   "c": "tmk",
+   "r": [
+    -100,
+    -12,
+    0,
+    0
+   ],
+   "color": "",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(244, 245, 247)",
+   "cls": "tmk",
+   "lab": {
+    "t": "Attack",
+    "tip": "",
+    "aria": "",
+    "c": "lab",
+    "r": [
+     -100,
+     -12,
+     0,
+     0
+    ],
+    "color": "",
+    "fs": "13px",
+    "ff": "ui",
+    "fw": "700",
+    "fi": "normal",
+    "ls": "2px",
+    "tt": "uppercase",
+    "tc": "rgb(232, 233, 238)"
+   },
+   "knob": {
+    "t": "",
+    "tip": "Manual attack (our addition). How fast the unit starts turning the sound down after it goes over the threshold. Slow lets the front of a kick or snare through, so it punches. Fast squashes the front. Range 0.1 ms to 100 ms.",
+    "aria": "Attack",
+    "c": "knob",
+    "r": [
+     -100,
+     -12,
+     0,
+     0
+    ],
+    "color": "",
+    "fs": "16px",
+    "ff": "ui",
+    "fw": "400",
+    "fi": "normal",
+    "ls": "normal",
+    "tt": "none",
+    "tc": "rgb(244, 245, 247)"
+   },
+   "val": [
+    -100,
+    -12,
+    0,
+    0
+   ],
+   "ends": [
+    {
+     "t": "0.1 ms",
+     "tip": "Manual attack (our addition). How fast the unit starts turning the sound down after it goes over the threshold. Slow lets the front of a kick or snare through, so it punches. Fast squashes the front. Range 0.1 ms to 100 ms.",
+     "aria": "",
+     "c": "kend e0",
+     "r": [
+      -100,
+      -12,
+      0,
+      0
+     ],
+     "color": "",
+     "fs": "9px",
+     "ff": "mono",
+     "fw": "400",
+     "fi": "normal",
+     "ls": "normal",
+     "tt": "none",
+     "tc": "rgb(169, 173, 184)"
+    },
+    {
+     "t": "100 ms",
+     "tip": "Manual attack (our addition). How fast the unit starts turning the sound down after it goes over the threshold. Slow lets the front of a kick or snare through, so it punches. Fast squashes the front. Range 0.1 ms to 100 ms.",
+     "aria": "",
+     "c": "kend e1",
+     "r": [
+      -100,
+      -12,
+      0,
+      0
+     ],
+     "color": "",
+     "fs": "9px",
+     "ff": "mono",
+     "fw": "400",
+     "fi": "normal",
+     "ls": "normal",
+     "tt": "none",
+     "tc": "rgb(169, 173, 184)"
+    }
+   ]
+  },
+  {
+   "t": "Release150 ms10 ms2 s",
+   "tip": "",
+   "aria": "",
+   "c": "tmk",
+   "r": [
+    -100,
+    -12,
+    0,
+    0
+   ],
+   "color": "",
+   "fs": "16px",
+   "ff": "ui",
+   "fw": "400",
+   "fi": "normal",
+   "ls": "normal",
+   "tt": "none",
+   "tc": "rgb(244, 245, 247)",
+   "cls": "tmk",
+   "lab": {
+    "t": "Release",
+    "tip": "",
+    "aria": "",
+    "c": "lab",
+    "r": [
+     -100,
+     -12,
+     0,
+     0
+    ],
+    "color": "",
+    "fs": "13px",
+    "ff": "ui",
+    "fw": "700",
+    "fi": "normal",
+    "ls": "2px",
+    "tt": "uppercase",
+    "tc": "rgb(232, 233, 238)"
+   },
+   "knob": {
+    "t": "",
+    "tip": "Manual release (our addition). How fast the unit lets go after the sound drops. Short brings the tail back up fast and adds energy but can pump. Long is smoother. Range 10 ms to 2 s.",
+    "aria": "Release",
+    "c": "knob",
+    "r": [
+     -100,
+     -12,
+     0,
+     0
+    ],
+    "color": "",
+    "fs": "16px",
+    "ff": "ui",
+    "fw": "400",
+    "fi": "normal",
+    "ls": "normal",
+    "tt": "none",
+    "tc": "rgb(244, 245, 247)"
+   },
+   "val": [
+    -100,
+    -12,
+    0,
+    0
+   ],
+   "ends": [
+    {
+     "t": "10 ms",
+     "tip": "Manual release (our addition). How fast the unit lets go after the sound drops. Short brings the tail back up fast and adds energy but can pump. Long is smoother. Range 10 ms to 2 s.",
+     "aria": "",
+     "c": "kend e0",
+     "r": [
+      -100,
+      -12,
+      0,
+      0
+     ],
+     "color": "",
+     "fs": "9px",
+     "ff": "mono",
+     "fw": "400",
+     "fi": "normal",
+     "ls": "normal",
+     "tt": "none",
+     "tc": "rgb(169, 173, 184)"
+    },
+    {
+     "t": "2 s",
+     "tip": "Manual release (our addition). How fast the unit lets go after the sound drops. Short brings the tail back up fast and adds energy but can pump. Long is smoother. Range 10 ms to 2 s.",
+     "aria": "",
+     "c": "kend e1",
+     "r": [
+      -100,
+      -12,
+      0,
+      0
+     ],
+     "color": "",
+     "fs": "9px",
+     "ff": "mono",
+     "fw": "400",
+     "fi": "normal",
+     "ls": "normal",
+     "tt": "none",
+     "tc": "rgb(169, 173, 184)"
+    }
+   ]
+  }
+ ],
+ "tmk": [
+  {
+   "cell": [
+    597,
+    126,
+    110,
+    90
+   ],
+   "lab": {
+    "t": "Attack",
+    "r": [
+     628.3,
+     126,
+     47.39,
+     16
+    ]
+   },
+   "knob": {
+    "r": [
+     622,
+     142,
+     60,
+     60
+    ],
+    "tip": "Manual attack (our addition). How fast the unit starts turning the sound down after it goes over the threshold. Slow lets the front of a kick or snare through, so it punches. Fast squashes the front. Range 0.1 ms to 100 ms."
+   },
+   "val": [
+    626.8,
+    200,
+    50.41,
+    16
+   ],
+   "ends": [
+    {
+     "t": "0.1 ms",
+     "r": [
+      599,
+      187,
+      32.41,
+      12
+     ]
+    },
+    {
+     "t": "100 ms",
+     "r": [
+      672.59,
+      187,
+      32.41,
+      12
+     ]
+    }
+   ]
+  },
+  {
+   "cell": [
+    717,
+    126,
+    110,
+    90
+   ],
+   "lab": {
+    "t": "Release",
+    "r": [
+     744.67,
+     126,
+     54.64,
+     16
+    ]
+   },
+   "knob": {
+    "r": [
+     742,
+     142,
+     60,
+     60
+    ],
+    "tip": "Manual release (our addition). How fast the unit lets go after the sound drops. Short brings the tail back up fast and adds energy but can pump. Long is smoother. Range 10 ms to 2 s."
+   },
+   "val": [
+    750.39,
+    200,
+    43.2,
+    16
+   ],
+   "ends": [
+    {
+     "t": "10 ms",
+     "r": [
+      719,
+      187,
+      27.02,
+      12
+     ]
+    },
+    {
+     "t": "2 s",
+     "r": [
+      808.8,
+      187,
+      16.2,
+      12
+     ]
+    }
+   ]
+  }
+ ],
+ "knobTexts": [
+  [],
+  [],
+  [
+   "-40",
+   "-36",
+   "-32",
+   "-28",
+   "-24",
+   "-20",
+   "-16",
+   "-12",
+   "-8",
+   "-4",
+   "0"
+  ],
+  [
+   "1",
+   "1.5",
+   "2",
+   "3",
+   "4",
+   "6",
+   "10",
+   "20",
+   "\u221e",
+   "-2",
+   "-1"
+  ],
+  [
+   "-20",
+   "-16",
+   "-12",
+   "-8",
+   "-4",
+   "0",
+   "+4",
+   "+8",
+   "+12",
+   "+16",
+   "+20"
+  ],
+  [
+   "Off",
+   "20",
+   "30",
+   "40",
+   "60",
+   "80",
+   "100",
+   "130",
+   "170",
+   "220",
+   "300"
+  ],
+  [],
+  [
+   "-12",
+   "-10",
+   "-9",
+   "-8",
+   "-7",
+   "-6",
+   "-5",
+   "-4",
+   "-3",
+   "-1",
+   "Off"
+  ]
+ ]
+}

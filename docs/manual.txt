@@ -1,0 +1,19 @@
+# What PunchPaw is
+PunchPaw is a punch compressor for drums and bass: kick, snare, drum bus, bass and parallel crush. It follows the behaviour of a classic 1970s hard-knee compressor, written from public manuals: a true RMS detector, a hard knee, three main controls (Threshold, Ratio, Output) and attack and release that follow the signal. It is fast and adds colour, so it is not a mastering tool.
+Our additions are marked "ours" in the info bubbles: soft knee, sidechain high-pass, Mix, Ceiling and a Manual timing switch with Attack and Release knobs.
+PunchPaw is free and open source (AGPL-3.0-or-later). It collects nothing and never uses the network.
+
+# Quick start
+- Insert PunchPaw on a kick, snare or drum bus and load the preset Start Here.
+- Lower Threshold until the Gain reduction display shows 4 to 8 dB on each hit.
+- Raise Output to match the loudness, then press B (Bypass) to compare with the dry sound.
+- For more punch, raise SC High-pass so the sub does not trigger the unit, and keep Timing on Auto, or switch to Manual and set a slower Attack (10 to 30 ms) so the front of the kick passes before the unit clamps down.
+- Use Ceiling as a safety: it is a soft clipper at the very end that stops peaks going over the chosen level.
+
+# Recommendations
+- Kick: Threshold so only the body is turned down, Ratio 4:1 to 8:1, SC High-pass around 60 to 100 Hz, Ceiling at -3 dBFS or lower for hard dance kicks.
+- Snare: Ratio 4:1 to 6:1, Attack manual 10 to 15 ms for crack, Release 60 to 100 ms.
+- Drum bus glue: Soft knee, Ratio 2:1, Gain reduction 2 to 4 dB.
+- Parallel crush: Ratio 8:1 or higher, Threshold low, Mix 30 to 60 percent.
+- Inverse Duck (negative ratio) is an effect: loud parts get quieter than quiet parts.
+- Keep an eye on the dB meters: blue is safe, purple is the warning zone, pink is clipping.

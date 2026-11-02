@@ -1,0 +1,8 @@
+build/
+build_local/
+Output/
+stage/
+*.zip
+__pycache__/
+*.pyc
+.DS_Store

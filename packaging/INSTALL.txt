@@ -1,0 +1,42 @@
+PunchPaw install, remove and use (works fully offline)
+=====================================================
+
+About the "unknown publisher" warnings
+  These installers are not code-signed or notarised: certificates cost money and this is a free project.
+  The warning only says "not signed by a known company". It does not mean the file is harmful.
+  The code is open on GitHub and SHA256SUMS in this zip lets you check your download. The plugin never uses the network.
+
+Windows
+  Run windows\PunchPaw-Setup.exe. It installs the VST3 plugin to C:\Program Files\Common Files\VST3 (fixed location, all users)
+  and the manual plus uninstaller to C:\Program Files\Studio 87\PunchPaw (the folder the installer asks about).
+  Windows may show a blue "unknown publisher" screen: click "More info", then "Run anyway". Close your DAW first.
+  Remove: Settings > Apps > PunchPaw > Uninstall. It asks if you also want your presets deleted
+  (default is No, so they stay).
+
+macOS
+  Open macos\PunchPaw-macOS.pkg. It installs the VST3 plugin, the manual and "Uninstall PunchPaw" (in Applications).
+  The installer is not notarised: if macOS blocks it, open System Settings > Privacy & Security and choose "Open Anyway".
+  Remove: open "Uninstall PunchPaw" in the Applications folder. It asks if you also want your presets deleted
+  (default is Keep).
+
+Linux, DAW installed as a Flatpak (for example Bitwig, Reaper or Ardour from Flathub)
+  1. Your DAW should use the org.freedesktop.Platform 25.08 runtime (check with: flatpak info <DAW id>, Runtime line).
+  2. Install the file from the linux folder (double click it in your software centre, or):
+       flatpak install --user linux/PunchPaw-flatpak-25.08.flatpak
+  3. Restart the DAW and rescan plugins.
+  Remove: flatpak uninstall --user org.freedesktop.LinuxAudio.Plugins.PunchPaw   (removes the plugin completely)
+
+Linux, DAW installed natively
+  Extract linux/PunchPaw-linux-vst3.tar.gz into ~/.vst3  (create the folder if needed), then rescan plugins.
+  Remove: delete the PunchPaw.vst3 folder from ~/.vst3.
+
+Your saved presets (kept on remove unless you choose to delete them)
+  Windows : %APPDATA%\Studio 87\PunchPaw\presets
+  macOS   : ~/Library/Application Support/Studio 87/PunchPaw/presets
+  Linux   : ~/.config/Studio 87/PunchPaw/presets  (a Flatpak DAW keeps its own copy under ~/.var/app/<DAW id>/config/)
+  To delete them yourself, remove the Studio 87/PunchPaw folder at that place.
+
+Manual: PunchPaw-manual.pdf (an interface tour of every control, plus recommendations).
+Checksums: SHA256SUMS.
+Licence: AGPL-3.0-or-later (see LICENSE). Free to use, copy and change.
+This is a test build until it has been checked on real machines.
