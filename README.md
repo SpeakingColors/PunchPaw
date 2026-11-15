@@ -1,5 +1,7 @@
 # PunchPaw
 
+<p align="center"><a href="https://ko-fi.com/studio87"><img src="https://raw.githubusercontent.com/SpeakingColors/.github/main/assets/kofi-banner.svg" alt="Support Studio 87 on Ko-fi" width="440"></a></p>
+
 A free, open source, cat-themed kick and drum limiter/compressor (VST3, Linux first): threshold, compression and output gain with program-dependent timing, plus optional manual attack and release.
 
 <p align="center"><img src="docs/screenshot.png" width="900" alt="PunchPaw plugin window"></p>
