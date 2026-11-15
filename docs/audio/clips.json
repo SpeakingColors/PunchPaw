@@ -1,0 +1,65 @@
+[
+  {
+    "before": "punchpaw-before-drums.mp3",
+    "after": "punchpaw-after-drums-hard-dance-punch.mp3",
+    "preset": "Hard Dance Punch",
+    "source": "Drum loop",
+    "description": "Drum loop through the real PunchPaw C++ core with the factory preset Hard Dance Punch (Kick; hard dance, punch). The After clip is level matched to the Before clip (-0.3 dB)."
+  },
+  {
+    "before": "punchpaw-before-bass.mp3",
+    "after": "punchpaw-after-bass-hard-dance-punch.mp3",
+    "preset": "Hard Dance Punch",
+    "source": "Bass line",
+    "description": "Bass line through the real PunchPaw C++ core with the factory preset Hard Dance Punch (Kick; hard dance, punch). The After clip is level matched to the Before clip (-0.4 dB)."
+  },
+  {
+    "before": "punchpaw-before-mix.mp3",
+    "after": "punchpaw-after-mix-hard-dance-punch.mp3",
+    "preset": "Hard Dance Punch",
+    "source": "Full mix loop",
+    "description": "Full mix loop through the real PunchPaw C++ core with the factory preset Hard Dance Punch (Kick; hard dance, punch). The After clip is level matched to the Before clip (-1.3 dB)."
+  },
+  {
+    "before": "punchpaw-before-drums.mp3",
+    "after": "punchpaw-after-drums-drum-bus-slam.mp3",
+    "preset": "Drum Bus Slam",
+    "source": "Drum loop",
+    "description": "Drum loop through the real PunchPaw C++ core with the factory preset Drum Bus Slam (Drum Bus; heavy, loud). The After clip is level matched to the Before clip (+7.1 dB)."
+  },
+  {
+    "before": "punchpaw-before-bass.mp3",
+    "after": "punchpaw-after-bass-drum-bus-slam.mp3",
+    "preset": "Drum Bus Slam",
+    "source": "Bass line",
+    "description": "Bass line through the real PunchPaw C++ core with the factory preset Drum Bus Slam (Drum Bus; heavy, loud). The After clip is level matched to the Before clip (+7.0 dB)."
+  },
+  {
+    "before": "punchpaw-before-mix.mp3",
+    "after": "punchpaw-after-mix-drum-bus-slam.mp3",
+    "preset": "Drum Bus Slam",
+    "source": "Full mix loop",
+    "description": "Full mix loop through the real PunchPaw C++ core with the factory preset Drum Bus Slam (Drum Bus; heavy, loud). The After clip is level matched to the Before clip (+6.3 dB)."
+  },
+  {
+    "before": "punchpaw-before-drums.mp3",
+    "after": "punchpaw-after-drums-parallel-punch.mp3",
+    "preset": "Parallel Punch",
+    "source": "Drum loop",
+    "description": "Drum loop through the real PunchPaw C++ core with the factory preset Parallel Punch (Drum Bus; parallel, mix). The After clip is level matched to the Before clip (+2.7 dB)."
+  },
+  {
+    "before": "punchpaw-before-bass.mp3",
+    "after": "punchpaw-after-bass-parallel-punch.mp3",
+    "preset": "Parallel Punch",
+    "source": "Bass line",
+    "description": "Bass line through the real PunchPaw C++ core with the factory preset Parallel Punch (Drum Bus; parallel, mix). The After clip is level matched to the Before clip (+2.7 dB)."
+  },
+  {
+    "before": "punchpaw-before-mix.mp3",
+    "after": "punchpaw-after-mix-parallel-punch.mp3",
+    "preset": "Parallel Punch",
+    "source": "Full mix loop",
+    "description": "Full mix loop through the real PunchPaw C++ core with the factory preset Parallel Punch (Drum Bus; parallel, mix). The After clip is level matched to the Before clip (+2.6 dB)."
+  }
+]
