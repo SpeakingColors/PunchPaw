@@ -18,9 +18,6 @@ The installers are not code-signed or notarised, because certificates cost money
 ## Controls
 Threshold, Ratio, Output (the classic three), plus our additions: Knee (hard or soft), SC High-pass, Mix, Ceiling and a Timing switch (Auto, or Manual with Attack and Release). Presets: 20 factory presets, your own saved presets, export and import. Every control has a hover info bubble. The interactive design mockup is in `docs/mockup/`.
 
-## Privacy
-Collects nothing. No network access.
-
 ## Support
 <p align="center">
   <a href="https://ko-fi.com/studio87"><img src="https://img.shields.io/badge/Support_Studio_87-on_Ko--fi-FF5E5B?style=for-the-badge&logo=kofi&logoColor=white" alt="Support Studio 87 on Ko-fi"></a>
