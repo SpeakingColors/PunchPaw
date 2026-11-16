@@ -1,4 +1,5 @@
 #include "Dialogs.h"
+#include "Studio87Link.h"
 
 namespace ui
 {
@@ -16,6 +17,7 @@ public:
         TextLayout tl; tl.createLayout (build(), (float) w);
         return (int) std::ceil (tl.getHeight()) + 2;
     }
+    void setSegs (std::vector<Seg> s) { segs = std::move (s); repaint(); }
     void paint (Graphics& g) override { build().draw (g, getLocalBounds().toFloat()); }
 private:
     AttributedString build() const
@@ -327,7 +329,18 @@ void Modal::openAbout()
     auto* kofi = p->make<PButton> (c, "Support Studio 87 on Ko-fi");
     kofi->onClick = [] (const ModifierKeys&) { URL ("https://ko-fi.com/studio87").launchInDefaultBrowser(); };
     auto* note = p->make<TextBlock> (c, std::vector<Seg> { { "Entirely optional. Nothing is locked.", false, false, true } });
-    p->row ({ kofi, note }, { 200, 0 }, 28);
+    // Studio 87 Gear Updater link: asks the OS to open studio87://open?product=PunchPaw. No network call by the plugin; nothing is sent.
+    auto* upd = p->make<PButton> (c, studio87link::buttonText());
+    upd->tip = studio87link::tipText();
+    auto* updMsg = p->make<TextBlock> (c, std::vector<Seg> { { String(), false, false, true } }, 13.0f);
+    upd->onClick = [updMsg] (const ModifierKeys&)
+    {
+        if (! URL (String (studio87link::updaterUrl ("PunchPaw"))).launchInDefaultBrowser())
+            updMsg->setSegs ({ { studio87link::fallbackMessage(), false, false, true } });
+    };
+    p->row ({ kofi, upd }, { 200, 240 }, 28);
+    p->row ({ updMsg }, { 0 }, 20);
+    p->row ({ note }, { 0 }, 22);
     p->fit();
     show (std::move (p));
 }
