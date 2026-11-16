@@ -336,10 +336,17 @@ void Modal::openAbout()
     upd->onClick = [updMsg] (const ModifierKeys&)
     {
         if (! URL (String (studio87link::updaterUrl ("PunchPaw"))).launchInDefaultBrowser())
-            updMsg->setSegs ({ { studio87link::fallbackMessage(), false, false, true } });
+        {
+            studio87link::openGitHub ("PunchPaw");   // no handler for studio87://: open the plugin's GitHub home page instead
+            updMsg->setSegs ({ { studio87link::fallbackNote(), false, false, true } });
+        }
     };
-    p->row ({ kofi, upd }, { 200, 240 }, 28);
-    p->row ({ updMsg }, { 0 }, 20);
+    auto* ghb = p->make<PButton> (c, studio87link::githubButtonText());
+    ghb->tip = studio87link::githubTipText();
+    ghb->onClick = [] (const ModifierKeys&) { studio87link::openGitHub ("PunchPaw"); };
+    p->row ({ kofi }, { 200 }, 28);
+    p->row ({ upd, ghb }, { 240, 170 }, 28);
+    p->row ({ updMsg }, { 0 }, 36);
     p->row ({ note }, { 0 }, 22);
     p->fit();
     show (std::move (p));
